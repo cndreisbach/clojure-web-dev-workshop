@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Functional Web Development with Clojure</title>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+<meta name="title" content="Functional Web Development with Clojure"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2013-06-09T10:30-0400"/>
+<meta name="author" content="Clinton Dreisbach"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+
+<link rel="stylesheet" type="text/css" href="common.css" />
+<link rel="stylesheet" type="text/css" href="screen.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="projection.css" media="projection" />
+<link rel="stylesheet" type="text/css" href="presenter.css" media="presenter" />
+
+
+</head>
+<body>
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">Functional Web Development with Clojure</h1>
+
+
+<p>Type <strong>T</strong> to begin the slide show.</p>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 Functional Web Development with Clojure</a></li>
+<li><a href="#sec-2">2 Introduction</a>
+<ul>
+<li><a href="#sec-2-1">2.1 The Problem</a>
+<ul>
+<li><a href="#sec-2-1-1">2.1.1 Many languages</a></li>
+<li><a href="#sec-2-1-2">2.1.2 Many moving parts</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-2">2.2 Approaches</a>
+<ul>
+<li><a href="#sec-2-2-1">2.2.1 Frameworks</a></li>
+<li><a href="#sec-2-2-2">2.2.2 Libraries</a></li>
+</ul></li>
+</ul>
+</li>
+<li><a href="#sec-3">3 Moving Parts</a>
+<ul>
+<li><a href="#sec-3-1">3.1 Routing and responding</a></li>
+<li><a href="#sec-3-2">3.2 HTML generation</a></li>
+<li><a href="#sec-3-3">3.3 JSON generation</a></li>
+<li><a href="#sec-3-4">3.4 REST APIs</a></li>
+<li><a href="#sec-3-5">3.5 CSS</a></li>
+<li><a href="#sec-3-6">3.6 JavaScript</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">4 Pulling things together</a>
+<ul>
+<li><a href="#sec-4-1">4.1 Luminus</a></li>
+<li><a href="#sec-4-2">4.2 Rolling your own framework</a></li>
+</ul>
+</li>
+<li><a href="#sec-5">5 Future Approaches</a></li>
+<li><a href="#sec-6">6 End</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Functional Web Development with Clojure &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h2>
+<div class="outline-text-2" id="text-1">
+
+
+
+
+<p class="presenters">
+Clinton Dreisbach
+</p>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Introduction &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h2>
+<div class="outline-text-2" id="text-2">
+
+
+</div>
+
+<div id="outline-container-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> The Problem &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-2-1">
+
+
+</div>
+
+<div id="outline-container-2-1-1" class="outline-4">
+<h4 id="sec-2-1-1"><span class="section-number-4">2.1.1</span> Many languages &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h4>
+<div class="outline-text-4" id="text-2-1-1">
+
+
+<ul>
+<li>HTML
+</li>
+<li>CSS
+</li>
+<li>JavaScript
+</li>
+<li>Some server-side language
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2-1-2" class="outline-4">
+<h4 id="sec-2-1-2"><span class="section-number-4">2.1.2</span> Many moving parts &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h4>
+<div class="outline-text-4" id="text-2-1-2">
+
+
+<ul>
+<li>web server
+</li>
+<li>routing
+</li>
+<li>data modeling
+</li>
+<li>data validation
+</li>
+<li>templating
+</li>
+<li>API generation
+</li>
+<li>code generation (<code>rails generate</code>)
+</li>
+<li>app configuration
+</li>
+<li>sessions/authorization
+</li>
+<li>DOM manipulation
+</li>
+</ul>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> Approaches &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-2-2">
+
+
+</div>
+
+<div id="outline-container-2-2-1" class="outline-4">
+<h4 id="sec-2-2-1"><span class="section-number-4">2.2.1</span> Frameworks &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h4>
+<div class="outline-text-4" id="text-2-2-1">
+
+
+<ul>
+<li>Rails
+</li>
+<li>Django
+</li>
+<li>For Clojure:
+<ul>
+<li>Noir - now deprecated
+</li>
+<li>Pedestal - very new
+</li>
+<li>CHP - insane
+</li>
+<li>Luminus - curated collection of libraries
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2-2-2" class="outline-4">
+<h4 id="sec-2-2-2"><span class="section-number-4">2.2.2</span> Libraries &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h4>
+<div class="outline-text-4" id="text-2-2-2">
+
+
+<p>
+The Clojure way: lots of loosely coupled libraries.
+</p>
+<p>
+Pros: flexible, able to move fast.
+</p>
+<p>
+Cons: instead of knowing 4 languages + a framework, now you get to learn a lot of libraries.
+</p>
+<ul>
+<li>Ring
+</li>
+<li>Compojure
+</li>
+<li>libnoir
+</li>
+<li>Hiccup
+</li>
+<li>Garden
+</li>
+<li>ClojureScript
+</li>
+<li>Liberator
+</li>
+<li>Friend
+</li>
+<li>Korma
+</li>
+</ul>
+
+
+</div>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Moving Parts &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h2>
+<div class="outline-text-2" id="text-3">
+
+
+</div>
+
+<div id="outline-container-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Routing and responding &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-3-1">
+
+</div>
+
+</div>
+
+<div id="outline-container-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> HTML generation &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-3-2">
+
+</div>
+
+</div>
+
+<div id="outline-container-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> JSON generation &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-3-3">
+
+</div>
+
+</div>
+
+<div id="outline-container-3-4" class="outline-3">
+<h3 id="sec-3-4"><span class="section-number-3">3.4</span> REST APIs &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-3-4">
+
+</div>
+
+</div>
+
+<div id="outline-container-3-5" class="outline-3">
+<h3 id="sec-3-5"><span class="section-number-3">3.5</span> CSS &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-3-5">
+
+</div>
+
+</div>
+
+<div id="outline-container-3-6" class="outline-3">
+<h3 id="sec-3-6"><span class="section-number-3">3.6</span> JavaScript &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-3-6">
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Pulling things together &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h2>
+<div class="outline-text-2" id="text-4">
+
+
+</div>
+
+<div id="outline-container-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> Luminus &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-1">
+
+</div>
+
+</div>
+
+<div id="outline-container-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> Rolling your own framework &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-2">
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> Future Approaches &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h2>
+<div class="outline-text-2" id="text-5">
+
+
+</div>
+
+</div>
+
+<div id="outline-container-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> End</h2>
+<div class="outline-text-2" id="text-6">
+
+
+
+
+
+
+
+<script type="text/javascript" src="org-html-slideshow.js"></script>
+
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2013-06-09T10:30-0400</p>
+<p class="author">Author: Clinton Dreisbach</p>
+<p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.3f with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 24</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+</body>
+</html>

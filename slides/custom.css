@@ -1,0 +1,40 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,700,700italic,400italic);
+@import url(http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic,700italic);
+
+#outline-container-1 {
+  background-image: url(clojure.jpg);
+  background-size: auto 70%;
+  background-position: top right;
+  background-repeat: no-repeat;
+}
+
+#sec-1 {
+  text-align: left;
+  width: 66%;
+}
+
+.presenters {
+  margin: 200px 0 0 18pt;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 18px auto;
+  width: 90%;
+}
+
+code, pre {
+  font-family: "Ubuntu Mono", Monaco, monospace; 
+}
+
+pre {
+  padding: 10px;
+  border-radius: 0 10px 0 10px;
+  font-size: 28px;
+}
+
+li {
+  font-size: 28px;
+}
+
+

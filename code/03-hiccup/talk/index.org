@@ -1,0 +1,113 @@
+#+TITLE: Functional Web Development with Clojure
+#+AUTHOR: Clinton Dreisbach
+
+#+BEGIN_HTML
+<p>Type <strong>T</strong> to begin the slide show.</p>
+#+END_HTML
+
+* Functional Web Development with Clojure                             :slide:
+
+#+BEGIN_HTML
+<p class="presenters">
+Clinton Dreisbach
+</p>
+#+END_HTML
+
+
+* Introduction                                                        :slide:
+** The Problem                                                        :slide:
+*** Many languages                                                    :slide:
+
+- HTML
+- CSS
+- JavaScript
+- Some server-side language
+
+*** Many moving parts                                                 :slide:
+
+- web server
+- routing
+- data modeling
+- data validation
+- templating
+- API generation
+- code generation (=rails generate=)
+- app configuration
+- sessions/authorization
+- DOM manipulation
+
+** Approaches                                                         :slide:
+*** Frameworks                                                        :slide:
+
+- Rails
+- Django
+- For Clojure:
+  - Noir - now deprecated
+  - Pedestal - very new
+  - CHP - insane
+  - Luminus - curated collection of libraries
+
+*** Libraries                                                         :slide:
+
+The Clojure way: lots of loosely coupled libraries.
+
+Pros: flexible, able to move fast.
+
+Cons: instead of knowing 4 languages + a framework, now you get to learn a lot of libraries.
+
+*** Libraries                                                         :slide:
+
+- Ring
+- Compojure
+- libnoir
+- Hiccup
+- Garden
+- ClojureScript
+- necessary-evil (https://github.com/brehaut/necessary-evil)
+- Liberator
+- Friend
+- Korma
+
+** Structure                                                          :slide:
+*Part 1: Current recommendations.* We're going to go through the moving
+parts of a sample application and talk about Clojure approaches and
+recommend libraries.
+
+*Part 2: Future approaches.* Ideas that aren't ready for primetime
+yet, but are awesome.
+
+* Moving Parts                                                        :slide:
+** Routing and responding                                             :slide:
+** HTML generation                                                    :slide:
+** JSON generation                                                    :slide:
+** REST APIs                                                          :slide:
+** XML-RPC (necessary-evil)                                           :slide:
+** CSS                                                                :slide:
+** JavaScript                                                         :slide:
+   
+* Pulling Things Together                                             :slide:
+** Luminus                                                            :slide:
+** Rolling your own framework                                         :slide:
+
+* Future Approaches                                                   :slide:
+** Hoplon and XML-RPC                                                 :slide:
+** Pedestal?                                                          :slide:
+* End
+
+#+PROPERTY: tangle yes
+
+#+TAGS: slide(s)
+
+#+STYLE: <link rel="stylesheet" type="text/css" href="common.css" />
+#+STYLE: <link rel="stylesheet" type="text/css" href="screen.css" media="screen" />
+#+STYLE: <link rel="stylesheet" type="text/css" href="projection.css" media="projection" />
+#+STYLE: <link rel="stylesheet" type="text/css" href="presenter.css" media="presenter" />
+
+#+BEGIN_HTML
+<script type="text/javascript" src="org-html-slideshow.js"></script>
+#+END_HTML
+
+# Local Variables:
+# org-export-html-style-include-default: nil
+# org-export-html-style-include-scripts: nil
+# End:

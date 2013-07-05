@@ -1,0 +1,4 @@
+(def default-color "#EFE")
+
+[:body
+ {:background-color default-color}]

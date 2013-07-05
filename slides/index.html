@@ -1,0 +1,2806 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Functional Web Development with Clojure</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="Functional Web Development with Clojure"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2013-07-04 23:21:24 EDT"/>
+<meta name="author" content="Clinton Dreisbach"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+
+<link rel="stylesheet" type="text/css" href="common.css" />
+<link rel="stylesheet" type="text/css" href="screen.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="projection.css" media="projection" />
+<link rel="stylesheet" type="text/css" href="presenter.css" media="presenter" />
+<link rel="stylesheet" type="text/css" href="custom.css" media="projection" />
+
+
+</head>
+<body>
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">Functional Web Development with Clojure</h1>
+
+
+<p>Type <strong>T</strong> to begin the slide show.</p>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 Functional Web Development with Clojure</a></li>
+<li><a href="#sec-2">2 Introduction</a>
+<ul>
+<li><a href="#sec-2-1">2.1 Introduction</a>
+<ul>
+<li><a href="#sec-2-1-1">2.1.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-2">2.2 The Problem</a></li>
+<li><a href="#sec-2-3">2.3 Many languages</a>
+<ul>
+<li><a href="#sec-2-3-1">2.3.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-4">2.4 Many moving parts</a>
+<ul>
+<li><a href="#sec-2-4-1">2.4.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-5">2.5 Approaches</a>
+<ul>
+<li><a href="#sec-2-5-1">2.5.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-6">2.6 Frameworks</a>
+<ul>
+<li><a href="#sec-2-6-1">2.6.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-7">2.7 Libraries</a>
+<ul>
+<li><a href="#sec-2-7-1">2.7.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-8">2.8 Why Clojure?</a>
+<ul>
+<li><a href="#sec-2-8-1">2.8.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-9">2.9 Libraries</a>
+<ul>
+<li><a href="#sec-2-9-1">2.9.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-10">2.10 Structure</a>
+<ul>
+<li><a href="#sec-2-10-1">2.10.1 Notes</a></li>
+</ul></li>
+</ul>
+</li>
+<li><a href="#sec-3">3 One-Slide Clojure Intro</a>
+<ul>
+<li><a href="#sec-3-1">3.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">4 Moving Parts</a>
+<ul>
+<li><a href="#sec-4-1">4.1 Moving Parts</a></li>
+<li><a href="#sec-4-2">4.2 Responding with Ring</a>
+<ul>
+<li><a href="#sec-4-2-1">4.2.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-3">4.3 Setting up a Ring app</a>
+<ul>
+<li><a href="#sec-4-3-1">4.3.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-4">4.4 A simple Ring app</a>
+<ul>
+<li><a href="#sec-4-4-1">4.4.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-5">4.5 Routing with Compojure</a>
+<ul>
+<li><a href="#sec-4-5-1">4.5.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-6">4.6 Compojure - URL params</a>
+<ul>
+<li><a href="#sec-4-6-1">4.6.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-7">4.7 Compojure - request params</a>
+<ul>
+<li><a href="#sec-4-7-1">4.7.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-8">4.8 Compojure - request params</a>
+<ul>
+<li><a href="#sec-4-8-1">4.8.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-9">4.9 Compojure - special routes</a>
+<ul>
+<li><a href="#sec-4-9-1">4.9.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-10">4.10 Compojure - intelligent responses</a>
+<ul>
+<li><a href="#sec-4-10-1">4.10.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-11">4.11 App review</a></li>
+<li><a href="#sec-4-12">4.12 Templating</a>
+<ul>
+<li><a href="#sec-4-12-1">4.12.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-13">4.13 HTML generation with Hiccup</a>
+<ul>
+<li><a href="#sec-4-13-1">4.13.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-14">4.14 More Hiccup examples</a>
+<ul>
+<li><a href="#sec-4-14-1">4.14.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-15">4.15 Hiccup + normal Clojure</a></li>
+<li><a href="#sec-4-16">4.16 App review</a></li>
+<li><a href="#sec-4-17">4.17 JSON generation with Cheshire</a>
+<ul>
+<li><a href="#sec-4-17-1">4.17.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-18">4.18 Reading JSON with Cheshire</a>
+<ul>
+<li><a href="#sec-4-18-1">4.18.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-19">4.19 Generating CSS with Garden</a>
+<ul>
+<li><a href="#sec-4-19-1">4.19.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-20">4.20 Serving up generated CSS</a>
+<ul>
+<li><a href="#sec-4-20-1">4.20.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-21">4.21 lib-noir</a>
+<ul>
+<li><a href="#sec-4-21-1">4.21.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-22">4.22 lib-noir features</a>
+<ul>
+<li><a href="#sec-4-22-1">4.22.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-23">4.23 The lib-noir handler</a>
+<ul>
+<li><a href="#sec-4-23-1">4.23.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-24">4.24 Responses with lib-noir</a>
+<ul>
+<li><a href="#sec-4-24-1">4.24.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-25">4.25 Login with lib-noir</a>
+<ul>
+<li><a href="#sec-4-25-1">4.25.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-26">4.26 Route protection with lib-noir</a>
+<ul>
+<li><a href="#sec-4-26-1">4.26.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-27">4.27 App review</a></li>
+<li><a href="#sec-4-28">4.28 REST APIs with Liberator</a>
+<ul>
+<li><a href="#sec-4-28-1">4.28.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-29">4.29 Simple Liberator decision tree</a></li>
+<li><a href="#sec-4-30">4.30 Simple Liberator example</a>
+<ul>
+<li><a href="#sec-4-30-1">4.30.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-31">4.31 Liberator context</a>
+<ul>
+<li><a href="#sec-4-31-1">4.31.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-32">4.32 Liberator context on decision failure</a>
+<ul>
+<li><a href="#sec-4-32-1">4.32.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-33">4.33 More complex decision tree</a></li>
+<li><a href="#sec-4-34">4.34 Liberator decisions</a>
+<ul>
+<li><a href="#sec-4-34-1">4.34.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-35">4.35 Liberator handlers and actions</a>
+<ul>
+<li><a href="#sec-4-35-1">4.35.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-36">4.36 Liberator's decision graph</a></li>
+<li><a href="#sec-4-37">4.37 Liberator representations</a>
+<ul>
+<li><a href="#sec-4-37-1">4.37.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-38">4.38 App review</a></li>
+<li><a href="#sec-4-39">4.39 ClojureScript</a>
+<ul>
+<li><a href="#sec-4-39-1">4.39.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-40">4.40 Building JS from CLJS</a>
+<ul>
+<li><a href="#sec-4-40-1">4.40.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-41">4.41 Sharing code between Clojure and ClojureScript</a>
+<ul>
+<li><a href="#sec-4-41-1">4.41.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-42">4.42 App review</a></li>
+</ul>
+</li>
+<li><a href="#sec-5">5 Pulling Things Together</a>
+<ul>
+<li><a href="#sec-5-1">5.1 Pulling Things Together</a>
+<ul>
+<li><a href="#sec-5-1-1">5.1.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-5-2">5.2 Luminus</a>
+<ul>
+<li><a href="#sec-5-2-1">5.2.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-5-3">5.3 Rolling your own framework</a>
+<ul>
+<li><a href="#sec-5-3-1">5.3.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-5-4">5.4 rosebud.clj</a></li>
+</ul>
+</li>
+<li><a href="#sec-6">6 Conclusion</a></li>
+<li><a href="#sec-7">7 Future Approaches</a>
+<ul>
+<li><a href="#sec-7-1">7.1 Hoplon and XML-RPC</a></li>
+<li><a href="#sec-7-2">7.2 Pedestal?</a></li>
+</ul>
+</li>
+<li><a href="#sec-8">8 Topics I Didn't Cover</a>
+<ul>
+<li><a href="#sec-8-1">8.1 XML-RPC (necessary-evil)</a></li>
+<li><a href="#sec-8-2">8.2 FRP with Javelin</a></li>
+</ul>
+</li>
+<li><a href="#sec-9">9 End</a></li>
+<li><a href="#sec-10">10 New Slides to Add</a>
+<ul>
+<li><a href="#sec-10-1">10.1 New section on SQL Korma</a></li>
+</ul>
+</li>
+<li><a href="#sec-11">11 Notes</a>
+<ul>
+<li><a href="#sec-11-1">11.1 Compare more often to other things: Rails, Django, Connect</a></li>
+</ul>
+</li>
+<li><a href="#sec-12">12 Notes from Sam</a>
+<ul>
+<li><a href="#sec-12-1">12.1 add example apps: qu talks to mongo</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Functional Web Development with Clojure &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h2>
+<div class="outline-text-2" id="text-1">
+
+
+
+
+<p class="presenters">
+Clinton Dreisbach
+</p>
+
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Introduction</h2>
+<div class="outline-text-2" id="text-2">
+
+
+</div>
+
+<div id="outline-container-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Introduction &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-2-1">
+
+
+<div style="text-align: center">
+<p>Hello, I'm Clinton.
+</p>
+<p>
+Clojure is fun.
+</p>
+<p>
+Web development is weird.
+</p>
+</div>
+
+
+</div>
+
+<div id="outline-container-2-1-1" class="outline-4">
+<h4 id="sec-2-1-1"><span class="section-number-4">2.1.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-2-1-1">
+
+
+<p>
+Hi, I'm Clinton! I am just a programmer who likes Clojure and uses it
+for web development. I work for the federal government.
+</p>
+<p>
+Anyway, what do you all do? Who here knows Clojure already? Who uses
+it at work? What about for web development?
+</p>
+<p>
+(If there's not too many people, go around the room and have quick
+introductions.)
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> The Problem &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-2-2">
+
+
+
+<div style="text-align: center">
+<p>Web development is <i>too big</i>.
+</p>
+</div>
+
+</div>
+
+</div>
+
+<div id="outline-container-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> Many languages &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-2-3">
+
+
+<ul>
+<li>HTML
+</li>
+<li>CSS
+</li>
+<li>JavaScript
+</li>
+<li>One or more server-side languages
+</li>
+</ul>
+
+
+
+</div>
+
+<div id="outline-container-2-3-1" class="outline-4">
+<h4 id="sec-2-3-1"><span class="section-number-4">2.3.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-2-3-1">
+
+
+<p>
+Web development is a true polyglot experience, not in a good
+way. Polyglot development can be great when you choose the right
+language for the right job, but web development doesn't give you that
+choice: the three languages you need for just the front-end are
+predetermined, and you need to use at least one other language for the
+back-end, likely two if you're connecting to a database.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-2-4" class="outline-3">
+<h3 id="sec-2-4"><span class="section-number-3">2.4</span> Many moving parts &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-2-4">
+
+
+<ul>
+<li>web server
+</li>
+<li>routing
+</li>
+<li>templating
+</li>
+<li>API generation
+</li>
+<li>code generation (<code>rails generate</code>)
+</li>
+<li>data modeling and validation
+</li>
+<li>sessions/authorization
+</li>
+<li>app configuration
+</li>
+<li>DOM manipulation
+</li>
+</ul>
+
+
+
+</div>
+
+<div id="outline-container-2-4-1" class="outline-4">
+<h4 id="sec-2-4-1"><span class="section-number-4">2.4.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-2-4-1">
+
+
+<p>
+Not only does web development come with a mess of languages, but it
+also has a plethora of moving parts, and each comes with a set of
+choices. You have to choose your web server, how to model your data,
+and what database to use, if you're using a database. You have your
+choice of templating languages. Depending on what you are using, you
+might have to choose how to configure your app and how to handle user
+sessions.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-2-5" class="outline-3">
+<h3 id="sec-2-5"><span class="section-number-3">2.5</span> Approaches &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-2-5">
+
+
+
+<div style="text-align: center">
+<p>The traditional approach: frameworks.
+</p>
+<p>
+Another approach: using the same language for client- and server-side code.
+</p>
+</div>
+
+
+</div>
+
+<div id="outline-container-2-5-1" class="outline-4">
+<h4 id="sec-2-5-1"><span class="section-number-4">2.5.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-2-5-1">
+
+
+<p>
+One approach to dealing with the problem of web development is an
+integrated framework. Frameworks are useful, but they don't solve the
+problem of having multiple languages to deal with. Lately, another
+solution has become popular: use the same language for the front and
+back ends. The problem is that because the browser determines the
+language you have to use for the front-end, it determines your
+back-end. There have been some solutions, like Opa and Elm, that
+abstract this out into another language, which is interesting, but
+we're going to focus on Clojure today.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-2-6" class="outline-3">
+<h3 id="sec-2-6"><span class="section-number-3">2.6</span> Frameworks &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-2-6">
+
+
+<ul>
+<li>Rails
+</li>
+<li>Django
+</li>
+<li>For Clojure:
+<ul>
+<li>Noir - now deprecated
+</li>
+<li>Pedestal - very new
+</li>
+<li>CHP - also very new
+</li>
+<li>Luminus - curated collection of libraries
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+
+</div>
+
+<div id="outline-container-2-6-1" class="outline-4">
+<h4 id="sec-2-6-1"><span class="section-number-4">2.6.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-2-6-1">
+
+
+<p>
+One approach to solving this problem is to build a framework. For
+Ruby, there's the Rails framework, and for Python, there's the Django
+framework, both of which I've spent a lot of time with. These come
+with a set of opinionated choices, some of which might be easy to
+change and some of which might not. This has a lot of good advantages:
+the different parts of the framework are guaranteed to fit together
+well, and the learning curve is easier, as you learn one approach for
+each thing you need to do. It comes with its own problems, too, of
+course. The choices are already made for you and might not be easy to
+change for your needs. You get the whole kitchen sink, even if you
+only need a little bit of it.
+</p>
+<p>
+Clojure has its own set of frameworks; as you can see, that has not
+been the most successful approach. The first major framework, Noir,
+has been deprecated by its author. Pedestal is a very new and very
+alpha framework. CHP is an oddball. It seems like a mix of PHP and
+Ruby on Rails in Clojure. Luminus is, in my opinion, the most
+promising, which ties into the Clojure approach.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-2-7" class="outline-3">
+<h3 id="sec-2-7"><span class="section-number-3">2.7</span> Libraries &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-2-7">
+
+
+<p>
+The Clojure way: lots of loosely coupled libraries.
+</p>
+<p>
+Pros: flexible, able to move fast.
+</p>
+<p>
+Cons: instead of knowing 4 languages + a framework, now you get to learn a lot of libraries.
+</p>
+
+</div>
+
+<div id="outline-container-2-7-1" class="outline-4">
+<h4 id="sec-2-7-1"><span class="section-number-4">2.7.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-2-7-1">
+
+
+<p>
+And what is the Clojure approach? With web development, and in most
+contexts, the Clojure ecosystem is more focused on small
+libraries. The benefits are plenty and obvious: smaller libraries can
+move faster to fix bugs and add features. You can choose just the
+parts you need for your application with no extra cruft.
+</p>
+<p>
+The downsides are plentiful as well, unfortunately. Individual
+libraries are of varying quality. Libraries might have very different
+interfaces, requiring you to build facades between them. And of
+course, the learning curve can be much worse. Not only is
+documentation decentralized, but you have to understand and choose
+between multiple options for each part of your web application.
+</p>
+<p>
+How does Clojure deal with this? The interface issue is minimized
+because Clojure has a small set of data structures with a simple set
+of abstractions to use on them. The quality issue is real and is only
+mitigated through recommendations, which is why I like the approach of
+Luminus, which we'll talk about more later. The documentation issue --
+well, that's why I'm here today.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-2-8" class="outline-3">
+<h3 id="sec-2-8"><span class="section-number-3">2.8</span> Why Clojure? &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-2-8">
+
+
+<ul>
+<li>Your domain is data manipulation or needs concurrency
+</li>
+<li>Access to all Java libraries
+</li>
+<li>Quick development with the REPL
+</li>
+<li>Good tooling with Leiningen
+</li>
+<li>Simple deployment with WAR files
+</li>
+<li>Clojure is <i>fast</i>
+</li>
+</ul>
+
+
+
+</div>
+
+<div id="outline-container-2-8-1" class="outline-4">
+<h4 id="sec-2-8-1"><span class="section-number-4">2.8.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-2-8-1">
+
+
+<p>
+Before we get started, there's a question I need to answer: why use
+Clojure as your one language for web development? There's the obvious
+answer that it has the facilities to do it and not all languages do,
+but there's X-to-JavaScript compilers for just about anything these
+days and writing a compiler to turn data structures into HTML and CSS
+is trivial. That reason doesn't really stand on its own.
+</p>
+<p>
+Here's my answers. First, your domain may push you toward Clojure or
+another functional language. Clojure's immutability, persistent data
+structures, and ease of concurrency make it a natural match for
+handling large amounts of data. Are you writing a search engine?
+Clojure will work for you. What about a data API to search all US
+mortgage applications for the last 5 years? Clojure will work for you.
+</p>
+<p>
+The other reasons move past your particular domain into why it's a
+good general-purpose web development language. You have a ton of great
+libraries and you don't have to use Java to use them. Leiningen and
+the REPL make the development process easy and quick. There's no
+waiting around for re-compilation and you can change your environment
+on the fly. Deployment is easy for anyone who's deployed a Java
+app. And lastly, Clojure is really fast compared to other dynamic
+languages. It has the JVM startup time, but after that, it smokes
+Ruby, Python, Perl, or many other dynamic languages.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-2-9" class="outline-3">
+<h3 id="sec-2-9"><span class="section-number-3">2.9</span> Libraries &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-2-9">
+
+
+<p>
+Just a few of the common libraries you'll use:
+</p>
+<ul>
+<li>Ring
+</li>
+<li>Compojure
+</li>
+<li>libnoir
+</li>
+<li>Hiccup
+</li>
+<li>Garden
+</li>
+<li>ClojureScript
+</li>
+</ul>
+
+
+
+</div>
+
+<div id="outline-container-2-9-1" class="outline-4">
+<h4 id="sec-2-9-1"><span class="section-number-4">2.9.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-2-9-1">
+
+
+<p>
+These are the core libraries I recommend if you're building a web
+application with Clojure. We're going to talk about them and others
+today. There's no need to dwell on this too much, but if you're going
+to check out for the next 3 hours, write these down and check them out
+later.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-2-10" class="outline-3">
+<h3 id="sec-2-10"><span class="section-number-3">2.10</span> Structure &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-2-10">
+
+<p><b>Part 1: Current recommendations.</b> We're going to go through the moving
+parts of a sample application and talk about Clojure approaches and
+recommend libraries.
+</p>
+<p>
+<b>Part 2: Future approaches.</b> Ideas that aren't ready for primetime
+yet, but are awesome.
+</p>
+
+</div>
+
+<div id="outline-container-2-10-1" class="outline-4">
+<h4 id="sec-2-10-1"><span class="section-number-4">2.10.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-2-10-1">
+
+
+<p>
+This is the structure we're going to follow. We're going to spend the
+first half to two-thirds of the class talking about reasonable web
+development with Clojure, stuff that works well today and will do you
+right. We are going to have lots and lots of real code to look at and
+will spend as much time in the code as on slides.
+</p>
+<p>
+After we get through the reasonable stuff, we're going to get to the
+future fun stuff. I know, saving the most fun for last isn't the best
+idea, but I want to cover the practical stuff while you're still fresh.
+</p>
+<p>
+Don't worry, we will have lots of breaks. Also, please feel free to
+stop me and ask questions. I'll try to stop plenty and ask you, but if
+I forget, interrupt me and ask.
+</p>
+</div>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> One-Slide Clojure Intro &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h2>
+<div class="outline-text-2" id="text-3">
+
+
+
+
+
+<pre class="src src-clojure"><span style="color: #d33682; font-weight: bold;">:hello</span>           <span style="color: #93a1a1;">; </span><span style="color: #93a1a1;">keyword</span>
+(1 2 3)          <span style="color: #93a1a1;">; </span><span style="color: #93a1a1;">list</span>
+[1 2 3]          <span style="color: #93a1a1;">; </span><span style="color: #93a1a1;">vector</span>
+{<span style="color: #d33682; font-weight: bold;">:a</span> 1, <span style="color: #d33682; font-weight: bold;">:b</span> 2}     <span style="color: #93a1a1;">; </span><span style="color: #93a1a1;">map</span>
+(<span style="color: #d33682; font-weight: bold;">:a</span> map)         <span style="color: #93a1a1;">; </span><span style="color: #93a1a1;">get value from a map</span>
+(<span style="color: #6c71c4; font-style: italic;">take</span> 2 [1 2 3]) <span style="color: #93a1a1;">; </span><span style="color: #93a1a1;">calling function take with two args </span>
+
+<span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">defining a function</span>
+(<span style="color: #859900; font-weight: bold;">defn</span> <span style="color: #268BD2; font-weight: bold;">subset</span> [coll n m]
+  (<span style="color: #6c71c4; font-style: italic;">drop</span> n (<span style="color: #6c71c4; font-style: italic;">take</span> (<span style="color: #6c71c4; font-style: italic;">+</span> n m) coll)))
+
+<span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">assigning values with let</span>
+(<span style="color: #859900; font-weight: bold;">let</span> [a 1
+      b 2]
+  (<span style="color: #6c71c4; font-style: italic;">+</span> a b))
+
+</pre>
+
+
+
+</div>
+
+<div id="outline-container-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h3>
+<div class="outline-text-3" id="text-3-1">
+
+
+<p>
+If you don't already know Clojure, here's an introduction in one slide
+that should help you understand the syntax for the rest of this talk.
+</p>
+<p>
+At the top, you can see data types specific to Clojure. There's
+strings and numbers and all the rest, but those are the same as they
+are in most languages. There's a keyword, which like a constant
+string. It evaluates to itself and makes equality tests very
+fast. They are usually used as keys in hash-maps.
+</p>
+<p>
+There's lists, which you will rarely see used to store data, and
+vectors, which you will see. It's the same as an array in many other
+languages. There's maps, also known in other languages as hash-maps,
+hashes, or dictionaries. Below the map, you can see how you might look
+up something in a map. This only works if you use keywords as the keys
+in the map.
+</p>
+<p>
+Next, you can see how to call a function in Clojure. It works like any
+other Lisp, a list with the function in the head position and the
+arguments after that. You define a function with <code>defn</code> like you can
+see below that. There's a function name, a vector with argument names,
+and then the body of the function.
+</p>
+<p>
+Lastly, you can see how to assign values to symbols using let. You
+will see this construction a lot. If you've used a Lisp before, you
+get this; if not, imagine it as assigning variables just inside the
+let statement.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Moving Parts</h2>
+<div class="outline-text-2" id="text-4">
+
+
+</div>
+
+<div id="outline-container-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> Moving Parts &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-1">
+
+
+<p>
+Let's way through all the parts of a standard Clojure web application,
+including some optional ones.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> Responding with Ring &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-2">
+
+
+
+
+<p>
+<img src="ring.png"  alt="ring.png" />
+</p>
+
+</div>
+
+<div id="outline-container-4-2-1" class="outline-4">
+<h4 id="sec-4-2-1"><span class="section-number-4">4.2.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-4-2-1">
+
+
+<p>
+Ring abstracts HTTP requests and responses into a simple API. 
+</p>
+<p>
+First, the Ring adapter takes a request from your web server and turns
+it into a map of the request headers, URL, request type, body, and the
+like. This allows you to use different web servers - Jetty, Tomcat,
+JBoss, or whatever - and use the same interface for dealing with
+requests.
+</p>
+<p>
+It passes this request map on to middleware, if you have specified
+any. Middleware is another pass-through function that manipulates the
+request or response map in some way. One example that you would often
+use is ring.middleware.params, which parses out the parameters from
+the query-string or the POST body and turns them into a map, which it
+puts into the request map.
+</p>
+<p>
+After middleware, the request map arrives at your application. Like
+Ring middleware, your application should take a request map and return
+a response map. Unlike Ring middleware, you will be generating the
+response map: middleware will take this response and alter it or pass
+it on. The response map needs to have the keys status and headers and
+usually has a body key.
+</p>
+<p>
+If you come from another language, you might have something like
+this. Ring is very similar to Ruby's Rack, WSGI in Python, Plack in
+Perl, or Connect in node.js.
+</p>
+<p>
+You can see Ring is a pure functional design. The application is made
+up of functions with the same interface, allowing those functions to
+be composed. Obviously, you can make it not pure by introducing global
+resources and side-effects, but when possible, keeping to this
+functional design makes your application easier to reason about and
+test.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4-3" class="outline-3">
+<h3 id="sec-4-3"><span class="section-number-3">4.3</span> Setting up a Ring app &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-3">
+
+
+
+
+<pre class="src src-clojure">(<span style="color: #859900; font-weight: bold;">defproject</span> <span style="color: #268BD2; font-weight: bold;">request-echo</span> <span style="color: #00877C;">"0.1.0-SNAPSHOT"</span>
+
+  <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">We require ring.</span>
+  <span style="color: #d33682; font-weight: bold;">:dependencies</span> [[org.clojure/clojure <span style="color: #00877C;">"1.5.1"</span>]
+                 [ring <span style="color: #00877C;">"1.1.8"</span>]]
+
+  <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">We use the lein-ring plugin to start ring.</span>
+  <span style="color: #d33682; font-weight: bold;">:plugins</span> [[lein-ring <span style="color: #00877C;">"0.8.3"</span>]]
+
+  <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">We tell Ring what our handler function is and</span>
+  <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">what port to start on.</span>
+  <span style="color: #d33682; font-weight: bold;">:ring</span> {<span style="color: #d33682; font-weight: bold;">:handler</span> request-echo/handler
+         <span style="color: #d33682; font-weight: bold;">:port</span> 3001})
+</pre>
+
+
+
+<pre class="src src-shell-script">lein ring server
+</pre>
+
+
+
+</div>
+
+<div id="outline-container-4-3-1" class="outline-4">
+<h4 id="sec-4-3-1"><span class="section-number-4">4.3.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-4-3-1">
+
+
+<p>
+This is how you set up a Leiningen project to run a Ring
+application. You need to require ring, of course, but you also
+probably want to use the lein-ring plugin. There's other ways to start
+up Ring, but this is the easiest way if you're just getting started.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4-4" class="outline-3">
+<h3 id="sec-4-4"><span class="section-number-3">4.4</span> A simple Ring app &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-4">
+
+
+
+
+
+<pre class="src src-clojure">(<span style="color: #859900; font-weight: bold;">ns</span> request-echo
+  (<span style="color: #d33682; font-weight: bold;">:require</span> [clojure.pprint <span style="color: #d33682; font-weight: bold;">:refer</span> [pprint]]))
+
+(<span style="color: #859900; font-weight: bold;">defn</span> <span style="color: #268BD2; font-weight: bold;">handler</span>
+  <span style="color: #00877C; font-style: italic;">"Return the request as HTML."</span>
+  <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">A request comes in the handler.  </span>
+  [request]
+
+  <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">The handler returns a response map.</span>
+  {<span style="color: #d33682; font-weight: bold;">:status</span> 200
+   <span style="color: #d33682; font-weight: bold;">:headers</span> {<span style="color: #00877C;">"Content-Type"</span> <span style="color: #00877C;">"text/html"</span>}
+   <span style="color: #d33682; font-weight: bold;">:body</span> (<span style="color: #6c71c4; font-style: italic;">str</span> <span style="color: #00877C;">"&lt;h1&gt;Request Echo&lt;/h1&gt;&lt;pre&gt;"</span>
+              (<span style="color: #6c71c4; font-style: italic;">with-out-str</span> (pprint request))
+              <span style="color: #00877C;">"&lt;/pre&gt;"</span>)})
+</pre>
+
+
+
+</div>
+
+<div id="outline-container-4-4-1" class="outline-4">
+<h4 id="sec-4-4-1"><span class="section-number-4">4.4.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-4-4-1">
+
+
+<p>
+This is a full Ring handler. It's not much of an application: it just
+returns your request pretty-printed. See how it takes a request, which
+is just a map, and then returns a new map, the response, with the keys
+body, headers, and status.
+</p>
+<p>
+Let's go look at this in action (go to the code here.)
+</p>
+<p>
+If this looks overly simple, it's because it is simple. You can build
+an entire application with just this. You could use <code>cond</code> or <code>case</code>
+and some regexes to route requests to different functions and use
+middleware for any site-wide processing you wanted to do. That leaves
+you building a lot of infrastructure, though, so let's look at a
+routing library, Compojure.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4-5" class="outline-3">
+<h3 id="sec-4-5"><span class="section-number-3">4.5</span> Routing with Compojure &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-5">
+
+
+
+
+
+<pre class="src src-clojure">(<span style="color: #6c71c4; font-style: italic;">require</span> '[compojure.core <span style="color: #d33682; font-weight: bold;">:refer</span> [routes]])
+(<span style="color: #6c71c4; font-style: italic;">require</span> '[compojure.route <span style="color: #d33682; font-weight: bold;">:as</span> route])
+
+(routes
+ <span style="color: #93a1a1;">;</span><span style="color: #93a1a1;">verb  route   parameters        handler</span>
+ (<span style="color: #268BD2; font-style: italic;">GET</span>   <span style="color: #00877C;">"/"</span>     []                (index-page))
+ (<span style="color: #268BD2; font-style: italic;">GET</span>   <span style="color: #00877C;">"/debts/:person"</span> [person] (person-page person))
+ (<span style="color: #268BD2; font-style: italic;">GET</span>   <span style="color: #00877C;">"/add-debt"</span> []            (add-debt-page))
+ (<span style="color: #268BD2; font-style: italic;">POST</span>  <span style="color: #00877C;">"/add-debt"</span> [from to amount] 
+       (add-debt-post {<span style="color: #d33682; font-weight: bold;">:from</span> from,
+                       <span style="color: #d33682; font-weight: bold;">:to</span> to,
+                       <span style="color: #d33682; font-weight: bold;">:amount</span> amount}))
+ (route/resources <span style="color: #00877C;">"/"</span>)
+ (route/not-found <span style="color: #00877C;">"Page not found"</span>))
+</pre>
+
+
+
+</div>
+
+<div id="outline-container-4-5-1" class="outline-4">
+<h4 id="sec-4-5-1"><span class="section-number-4">4.5.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-4-5-1">
+
+
+<p>
+This is a route set defined using the Compojure library. They might
+look self-explanatory. For most routes, you start with a verb, like
+GET, then the route you want to handle. You put any parameters you
+want to capture, and then put a handler. This handler will be called
+when a request that matches its route comes in.
+</p>
+<p>
+The <code>routes</code> macro returns a Ring handler - it just defines a function
+that takes a request and routes it to another function, then returns
+the result of that function.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4-6" class="outline-3">
+<h3 id="sec-4-6"><span class="section-number-3">4.6</span> Compojure - URL params &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-6">
+
+
+
+
+
+<pre class="src src-clojure">(<span style="color: #6c71c4; font-style: italic;">require</span> '[compojure.core <span style="color: #d33682; font-weight: bold;">:refer</span> <span style="color: #d33682; font-weight: bold;">:all</span>])
+(<span style="color: #6c71c4; font-style: italic;">require</span> '[compojure.route <span style="color: #d33682; font-weight: bold;">:as</span> route])
+
+(routes
+ (<span style="color: #268BD2; font-style: italic;">GET</span> <span style="color: #00877C;">"/"</span> [] (views/index-page db))
+
+ <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">What's this? :person is a placeholder. It is used as a </span>
+ <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">parameter in this route and sends that on to the handler.</span>
+ (<span style="color: #268BD2; font-style: italic;">GET</span> <span style="color: #00877C;">"/debts/:person"</span> [person] (views/person-page db person))
+
+ (<span style="color: #268BD2; font-style: italic;">GET</span> <span style="color: #00877C;">"/add-debt"</span> [] (views/add-debt-page))
+ (<span style="color: #268BD2; font-style: italic;">POST</span> <span style="color: #00877C;">"/add-debt"</span> [from to amount] 
+       (views/add-debt-post db {<span style="color: #d33682; font-weight: bold;">:from</span> from,
+                                <span style="color: #d33682; font-weight: bold;">:to</span> to,
+                                <span style="color: #d33682; font-weight: bold;">:amount</span> amount}))
+ (route/resources <span style="color: #00877C;">"/"</span>)
+ (route/not-found <span style="color: #00877C;">"Page not found"</span>))    
+</pre>
+
+
+
+</div>
+
+<div id="outline-container-4-6-1" class="outline-4">
+<h4 id="sec-4-6-1"><span class="section-number-4">4.6.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-4-6-1">
+
+
+<p>
+Take a look at our second route. It is using a placeholder in the
+route definition. Placeholders start with a colon and match any
+string. I want to use that placeholder in my handler, so I put its
+name in the vector of parameters to capture.
+</p>
+<p>
+You probably are wondering where <code>db</code> came from. In this case, this
+code is the body of a function that takes a database and returns a
+routeset. The database is being closed over so I have access to it in
+my application: it's not a parameter from the routes.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4-7" class="outline-3">
+<h3 id="sec-4-7"><span class="section-number-3">4.7</span> Compojure - request params &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-7">
+
+
+
+
+
+<pre class="src src-clojure">(<span style="color: #6c71c4; font-style: italic;">require</span> '[compojure.core <span style="color: #d33682; font-weight: bold;">:refer</span> <span style="color: #d33682; font-weight: bold;">:all</span>])
+
+(routes
+ <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">from, to, and amount are not in the URL. So where do they</span>
+ <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">come from? They are, in this case, request params from</span>
+ <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">the form. This syntax can also be used to capture request</span>
+ <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">params from the query string.</span>
+ (<span style="color: #268BD2; font-style: italic;">POST</span> <span style="color: #00877C;">"/add-debt"</span> [from to amount] 
+       (add-debt-post db {<span style="color: #d33682; font-weight: bold;">:from</span> from,
+                          <span style="color: #d33682; font-weight: bold;">:to</span> to,
+                          <span style="color: #d33682; font-weight: bold;">:amount</span> amount}))
+
+ <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">Clojure destructuring</span>
+ (<span style="color: #268BD2; font-style: italic;">POST</span> <span style="color: #00877C;">"/add-debt"</span> {{from <span style="color: #d33682; font-weight: bold;">:from</span>, to <span style="color: #d33682; font-weight: bold;">:to</span>, amount <span style="color: #d33682; font-weight: bold;">:amount</span>} <span style="color: #d33682; font-weight: bold;">:params</span>}
+       (add-debt-post {<span style="color: #d33682; font-weight: bold;">:from</span> from,
+                       <span style="color: #d33682; font-weight: bold;">:to</span> to,
+                       <span style="color: #d33682; font-weight: bold;">:amount</span> amount})))
+</pre>
+
+
+
+</div>
+
+<div id="outline-container-4-7-1" class="outline-4">
+<h4 id="sec-4-7-1"><span class="section-number-4">4.7.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-4-7-1">
+
+
+<p>
+As I mentioned, <code>routes</code> is a macro, and like most macros, it can be a
+little confusing. The parameters are a special destructuring form used
+by Compojure. You can see in this line for "/add-debt" that we are
+getting the "from," "to," and "amount" request parameters from the
+form post.
+</p>
+<p>
+If you provide a map instead of a vector, you use regular Clojure
+destructuring. You can see an example of that on the second definition
+for POST "/add-debt".
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4-8" class="outline-3">
+<h3 id="sec-4-8"><span class="section-number-3">4.8</span> Compojure - request params &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-8">
+
+
+
+
+
+<pre class="src src-clojure">(<span style="color: #6c71c4; font-style: italic;">require</span> '[compojure.core <span style="color: #d33682; font-weight: bold;">:refer</span> <span style="color: #d33682; font-weight: bold;">:all</span>])
+
+(routes
+ <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">Super-special Compojure destructuring.</span>
+ (<span style="color: #268BD2; font-style: italic;">POST</span> <span style="color: #00877C;">"/add-debt"</span> [from to amount <span style="color: #d33682; font-weight: bold;">:as</span> req] 
+       (add-debt-post req {<span style="color: #d33682; font-weight: bold;">:from</span> from,
+                           <span style="color: #d33682; font-weight: bold;">:to</span> to,
+                           <span style="color: #d33682; font-weight: bold;">:amount</span> amount})))
+</pre>
+
+
+
+</div>
+
+<div id="outline-container-4-8-1" class="outline-4">
+<h4 id="sec-4-8-1"><span class="section-number-4">4.8.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-4-8-1">
+
+
+<p>
+If we want to pass the entire request on to our handling function,
+Compojure lets you do that through its destructuring. Just add an :as
+keyword and a var name for the request to the vector. This works even
+if you do not have params you are capturing before the :as keyword.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4-9" class="outline-3">
+<h3 id="sec-4-9"><span class="section-number-3">4.9</span> Compojure - special routes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-9">
+
+
+
+
+
+<pre class="src src-clojure">(<span style="color: #6c71c4; font-style: italic;">require</span> '[compojure.core <span style="color: #d33682; font-weight: bold;">:refer</span> <span style="color: #d33682; font-weight: bold;">:all</span>])
+(<span style="color: #6c71c4; font-style: italic;">require</span> '[compojure.route <span style="color: #d33682; font-weight: bold;">:as</span> route])
+
+(routes
+ <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">Special routes.</span>
+ (route/resources <span style="color: #00877C;">"/"</span>)
+ (route/not-found <span style="color: #00877C;">"Page not found"</span>))  
+</pre>
+
+
+
+</div>
+
+<div id="outline-container-4-9-1" class="outline-4">
+<h4 id="sec-4-9-1"><span class="section-number-4">4.9.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-4-9-1">
+
+
+<p>
+Compojure gives you a few special routes as well. We're using two
+here. The <code>resources</code> route lets you serve up any resources that are
+on the classpath, which is nice for static files such as CSS,
+Javascript, or images. The not-found route captures any URL and
+returns with a 404 status and the body provided.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4-10" class="outline-3">
+<h3 id="sec-4-10"><span class="section-number-3">4.10</span> Compojure - intelligent responses &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-10">
+
+
+
+
+
+<pre class="src src-clojure">(<span style="color: #859900; font-weight: bold;">defn</span> <span style="color: #268BD2; font-weight: bold;">index-page</span> [debts]
+  (<span style="color: #6c71c4; font-style: italic;">str</span> <span style="color: #00877C;">"&lt;h1&gt;Balances:&lt;/h1&gt;&lt;pre&gt;"</span>
+       (balances debts)
+       <span style="color: #00877C;">"&lt;/pre&gt;&lt;h1&gt;All debts:&lt;/h1&gt;&lt;pre&gt;"</span>
+       (simplify debts)
+       <span style="color: #00877C;">"&lt;/pre&gt;"</span>))
+</pre>
+
+
+
+</div>
+
+<div id="outline-container-4-10-1" class="outline-4">
+<h4 id="sec-4-10-1"><span class="section-number-4">4.10.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-4-10-1">
+
+
+<p>
+Compojure adds some intelligence to responses. If you return something
+that is not a response map from a handler function, Compojure attempts
+to coerce it into a response map. Strings are turned into the body of
+a response with status 200 and content-type text/html. Other things
+you can return are files, InputStreams, references and functions.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4-11" class="outline-3">
+<h3 id="sec-4-11"><span class="section-number-3">4.11</span> App review &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-11">
+
+
+<p>
+Let's take a few minutes and look at the sample application we have so
+far, so you can see how all this fits together.
+</p>
+<p>
+tag: ex-compojure
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-4-12" class="outline-3">
+<h3 id="sec-4-12"><span class="section-number-3">4.12</span> Templating &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-12">
+
+
+<ul>
+<li>HTML
+</li>
+<li>JSON
+</li>
+<li>CSS
+</li>
+</ul>
+
+
+
+</div>
+
+<div id="outline-container-4-12-1" class="outline-4">
+<h4 id="sec-4-12-1"><span class="section-number-4">4.12.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-4-12-1">
+
+
+<p>
+Templating is transforming data into some text format and is an
+important part of any web application. We are going to cover HTML,
+JSON, and CSS templating, although there's obviously lots of other
+formats you may want to output. 
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4-13" class="outline-3">
+<h3 id="sec-4-13"><span class="section-number-3">4.13</span> HTML generation with Hiccup &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-13">
+
+
+<p>
+Hiccup turns Clojure data structures into HTML.
+</p>
+
+
+
+<pre class="src src-clojure">(<span style="color: #6c71c4; font-style: italic;">require</span> '[hiccup.core <span style="color: #d33682; font-weight: bold;">:refer</span> [html]])
+
+(html [<span style="color: #d33682; font-weight: bold;">:a.btn</span>         <span style="color: #93a1a1;">; </span><span style="color: #93a1a1;">element + class or id</span>
+       {<span style="color: #d33682; font-weight: bold;">:href</span> <span style="color: #00877C;">"/go"</span>}  <span style="color: #93a1a1;">; </span><span style="color: #93a1a1;">map for attributes</span>
+       <span style="color: #00877C;">"Click here"</span>]) <span style="color: #93a1a1;">; </span><span style="color: #93a1a1;">Content</span>
+<span style="color: #93a1a1;">;;</span><span style="color: #93a1a1;">=&gt; "&lt;a class=\"btn\" href=\"/go\"&gt;Click here&lt;/a&gt;"</span>
+</pre>
+
+
+
+</div>
+
+<div id="outline-container-4-13-1" class="outline-4">
+<h4 id="sec-4-13-1"><span class="section-number-4">4.13.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-4-13-1">
+
+
+<p>
+The idea of Hiccup is very simple: take Clojure data structures and
+transform them into HTML. Elements are represented by vectors with a
+required first member of a keyword. This can be just the tag name, or
+a CSS-style selector with dotted class and hashed id syntax.
+</p>
+<p>
+The vector can have one or more other elements. If the second element
+is a map, it is used as attributes for the tag. All other elements,
+including the second element if it is not a map, are treated as
+content for the tag.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4-14" class="outline-3">
+<h3 id="sec-4-14"><span class="section-number-3">4.14</span> More Hiccup examples &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-14">
+
+
+
+
+
+<pre class="src src-clojure">(<span style="color: #6c71c4; font-style: italic;">require</span> '[hiccup.core <span style="color: #d33682; font-weight: bold;">:refer</span> [html]])
+
+(html [<span style="color: #d33682; font-weight: bold;">:h1</span>])
+<span style="color: #93a1a1;">;;</span><span style="color: #93a1a1;">=&gt; "&lt;h1&gt;&lt;/h1&gt;"</span>
+
+(html [<span style="color: #d33682; font-weight: bold;">:link</span> {<span style="color: #d33682; font-weight: bold;">:rel</span> <span style="color: #00877C;">"stylesheet"</span>
+              <span style="color: #d33682; font-weight: bold;">:type</span> <span style="color: #00877C;">"text/css"</span>
+              <span style="color: #d33682; font-weight: bold;">:href</span> <span style="color: #00877C;">"/public/css/main.css"</span>}])
+<span style="color: #93a1a1;">;;</span><span style="color: #93a1a1;">=&gt; "&lt;link href=\"/public/css/main.css\"</span>
+<span style="color: #93a1a1;">;;          </span><span style="color: #93a1a1;">rel=\"stylesheet\"</span>
+<span style="color: #93a1a1;">;;          </span><span style="color: #93a1a1;">type=\"text/css\" /&gt;"</span>
+
+(html [<span style="color: #d33682; font-weight: bold;">:begone</span> <span style="color: #00877C;">"devil"</span>])
+<span style="color: #93a1a1;">;;</span><span style="color: #93a1a1;">=&gt; "&lt;begone&gt;devil&lt;/begone&gt;"</span>
+</pre>
+
+
+
+</div>
+
+<div id="outline-container-4-14-1" class="outline-4">
+<h4 id="sec-4-14-1"><span class="section-number-4">4.14.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-4-14-1">
+
+
+<p>
+Note how the <code>h1</code> tag has no content, but a closing tag is inserted,
+while with the <code>link</code> tag, there is no closing tag. Hiccup contains
+some small logic about the structure of HTML tags. However, Hiccup
+does not stop you from using nonexistent tags, as you can see from the
+last example.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4-15" class="outline-3">
+<h3 id="sec-4-15"><span class="section-number-3">4.15</span> Hiccup + normal Clojure &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-15">
+
+
+
+
+
+<pre class="src src-clojure">(<span style="color: #6c71c4; font-style: italic;">require</span> '[hiccup.core <span style="color: #d33682; font-weight: bold;">:refer</span> <span style="color: #d33682; font-weight: bold;">:all</span>])
+(<span style="color: #859900; font-weight: bold;">def</span> <span style="color: #268BD2; font-weight: bold;">owes</span> [[<span style="color: #00877C;">"Pete"</span> 4.25] [<span style="color: #00877C;">"Lisa"</span> 12.10]])
+(html
+ [<span style="color: #d33682; font-weight: bold;">:h1</span> <span style="color: #00877C;">"You owe:"</span>]
+ [<span style="color: #d33682; font-weight: bold;">:ul</span>
+  (<span style="color: #859900; font-weight: bold;">if</span> (zero? (<span style="color: #6c71c4; font-style: italic;">count</span> owes))
+    [<span style="color: #d33682; font-weight: bold;">:li</span> <span style="color: #00877C;">"Nothing!"</span>]
+    (<span style="color: #859900; font-weight: bold;">for</span> [[person amount] owes]
+      [<span style="color: #d33682; font-weight: bold;">:li</span> (<span style="color: #6c71c4; font-style: italic;">str</span> person <span style="color: #00877C;">": $"</span> amount)]))])
+<span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">=&gt; "&lt;h1&gt;You owe:&lt;/h1&gt;&lt;ul&gt;&lt;li&gt;Pete: $4.25&lt;/li&gt;&lt;li&gt;Lisa: $12.1&lt;/li&gt;&lt;/ul&gt;"</span>
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-4-16" class="outline-3">
+<h3 id="sec-4-16"><span class="section-number-3">4.16</span> App review &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-16">
+
+
+<p>
+Let's look at the views we've created so far so we can see how this
+all fits together.
+</p>
+<p>
+tag: ex-hiccup
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-4-17" class="outline-3">
+<h3 id="sec-4-17"><span class="section-number-3">4.17</span> JSON generation with Cheshire &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-17">
+
+
+
+
+
+<pre class="src src-clojure">(<span style="color: #6c71c4; font-style: italic;">require</span> '[cheshire.core <span style="color: #d33682; font-weight: bold;">:as</span> json])
+
+(<span style="color: #859900; font-weight: bold;">let</span> [debts (<span style="color: #d33682; font-weight: bold;">:debts</span> @db)        
+      balances (debts/balances debts)]
+  {<span style="color: #d33682; font-weight: bold;">:status</span> 200
+   <span style="color: #d33682; font-weight: bold;">:headers</span> {<span style="color: #00877C;">"Content-Type"</span> <span style="color: #00877C;">"application/json"</span>}
+   <span style="color: #d33682; font-weight: bold;">:body</span> (json/generate-string
+          {<span style="color: #d33682; font-weight: bold;">:debts</span> debts
+           <span style="color: #d33682; font-weight: bold;">:balances</span> balances})})
+</pre>
+
+
+
+</div>
+
+<div id="outline-container-4-17-1" class="outline-4">
+<h4 id="sec-4-17-1"><span class="section-number-4">4.17.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-4-17-1">
+
+
+<p>
+Cheshire turns Clojure maps and vectors into JSON. You'll notice that
+in this code, I make the response map as opposed to with the HTML
+views. Compojure is smart about turning whatever you give it into a
+response map, but it assumes you're giving it HTML, which we're not,
+so we have to be more explicit.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4-18" class="outline-3">
+<h3 id="sec-4-18"><span class="section-number-3">4.18</span> Reading JSON with Cheshire &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-18">
+
+
+
+
+
+<pre class="src src-clojure">(<span style="color: #6c71c4; font-style: italic;">require</span> '[cheshire.core <span style="color: #d33682; font-weight: bold;">:as</span> json])
+
+(routes
+ (<span style="color: #268BD2; font-style: italic;">POST</span> <span style="color: #00877C;">"/add-debt.json"</span> {body <span style="color: #d33682; font-weight: bold;">:body</span>}
+       (views/add-debt-json db (<span style="color: #6c71c4; font-style: italic;">slurp</span> body))))
+
+(<span style="color: #859900; font-weight: bold;">defn</span> <span style="color: #268BD2; font-weight: bold;">add-debt-json</span> [db body]
+  (json/parse-string body))
+</pre>
+
+
+
+</div>
+
+<div id="outline-container-4-18-1" class="outline-4">
+<h4 id="sec-4-18-1"><span class="section-number-4">4.18.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-4-18-1">
+
+
+<p>
+Parsing JSON is simple with Cheshire, but there is something important
+to note here when building a JSON API. If you want to parse JSON in a
+POST body, you need to know that the request body is not a string, but
+is instead an InputStream. You can convert it to a string using the
+slurp function.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4-19" class="outline-3">
+<h3 id="sec-4-19"><span class="section-number-3">4.19</span> Generating CSS with Garden &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-19">
+
+
+
+
+
+<pre class="src src-clojure">(<span style="color: #6c71c4; font-style: italic;">require</span> '[garden.units <span style="color: #d33682; font-weight: bold;">:as</span> u <span style="color: #d33682; font-weight: bold;">:refer</span> [px pt]])
+
+(<span style="color: #859900; font-weight: bold;">def</span> <span style="color: #268BD2; font-weight: bold;">default-color</span> <span style="color: #00877C;">"#EFE"</span>)
+
+[[<span style="color: #d33682; font-weight: bold;">:body</span>
+  {<span style="color: #d33682; font-weight: bold;">:background-color</span> default-color}]
+
+ [<span style="color: #d33682; font-weight: bold;">:.btn-primary</span>
+  {<span style="color: #d33682; font-weight: bold;">:border-width</span> (px 5)}
+  [<span style="color: #d33682; font-weight: bold;">:&amp;:hover</span>
+   {<span style="color: #d33682; font-weight: bold;">:border-color</span> <span style="color: #00877C;">"black"</span>}]]]
+</pre>
+
+
+
+</div>
+
+<div id="outline-container-4-19-1" class="outline-4">
+<h4 id="sec-4-19-1"><span class="section-number-4">4.19.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-4-19-1">
+
+
+<p>
+In the same way that Hiccup turns Clojure data structures into HTML,
+Garden turns data structures into CSS. Why is this useful? Well, CSS
+is another language to know, which can be annoying, but more
+importantly, CSS lacks several features that have caused others to
+build CSS preprocessors in the past. CSS lacks symbolic names for
+values; reusable, composable chunks; and nested definitions. You can
+use another preprocessor like Sass or Less for this, but as long as
+you are using Clojure, why not stick with that?
+</p>
+<p>
+While what you're seeing on this slide doesn't cover all of Garden --
+it has interesting support for media queries, for example &ndash; it still
+might make you ask why you would use this, especially in light of
+tools like Compass that allow you to pick and choose from pre-written
+CSS packages and come with lots of functions to manipulate CSS
+values. Garden is still very young and support for things like this
+are in the pipeline. If you know CSS and like using Clojure, this is a
+project I highly recommend getting involved with and contributing to.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4-20" class="outline-3">
+<h3 id="sec-4-20"><span class="section-number-3">4.20</span> Serving up generated CSS &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-20">
+
+
+
+
+
+<pre class="src src-clojure">(routes
+ (<span style="color: #268BD2; font-style: italic;">GET</span> <span style="color: #00877C;">"/*.css"</span> {{path <span style="color: #d33682; font-weight: bold;">:*</span>} <span style="color: #d33682; font-weight: bold;">:route-params</span>}
+      (views/css-page-memoized path)))
+
+(<span style="color: #6c71c4; font-style: italic;">require</span> '[garden.core <span style="color: #d33682; font-weight: bold;">:refer</span> [css]])
+
+(<span style="color: #859900; font-weight: bold;">defn</span> <span style="color: #268BD2; font-weight: bold;">css-page</span> [path]
+  (<span style="color: #859900; font-weight: bold;">when-let</span> [garden-url 
+             (io/resource (<span style="color: #6c71c4; font-style: italic;">str</span> <span style="color: #00877C;">"public/"</span> path <span style="color: #00877C;">".garden"</span>))]
+    (<span style="color: #859900; font-weight: bold;">let</span> [garden-data (<span style="color: #6c71c4; font-style: italic;">load-file</span> (<span style="color: #268BD2; font-style: italic;">.getPath</span> garden-url))]
+      {<span style="color: #d33682; font-weight: bold;">:status</span> 200
+       <span style="color: #d33682; font-weight: bold;">:headers</span> {<span style="color: #00877C;">"Content-Type"</span> <span style="color: #00877C;">"text/css"</span>}
+       <span style="color: #d33682; font-weight: bold;">:body</span> (css garden-data)})))
+
+(<span style="color: #859900; font-weight: bold;">def</span> <span style="color: #268BD2; font-weight: bold;">css-page-memoized</span> (<span style="color: #6c71c4; font-style: italic;">memoize</span> css-page))
+</pre>
+
+
+
+</div>
+
+<div id="outline-container-4-20-1" class="outline-4">
+<h4 id="sec-4-20-1"><span class="section-number-4">4.20.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-4-20-1">
+
+
+<p>
+The star in the path for the CSS generation route just means capture
+anything. In our case, we suffix that with dot-css, so capture any
+request with a path that ends in dot-css.
+</p>
+<p>
+This view function looks to see if we have a file in resources/public/
+that matches the requested path with the extension .garden. If so, we
+load the file and pass the result of evaluating the file to the css
+function to produce CSS. Obviously, doing this every time is more
+expensive than just serving up a CSS file, so I memoize it.
+</p>
+<p>
+An important point to know here is that if our view function returns
+nil, Compojure will move on to the next match in the routes. Using
+<code>when-let</code> to see if we have a resource that matches our path causes
+us to return nil if we do not have the resource. This allows us to put
+this before the match-all public resource route and still allow
+vendored CSS files, like Bootstrap, to be served.
+</p>
+<p>
+Is this the best way to do this? Probably not. What would be even
+better &ndash; in many cases &ndash; would be a Leiningen plugin that compiles
+our Garden-based spreadsheets to CSS so we can serve up static
+files. This is again a golden opportunity for someone to get
+involved. Still, the way we are doing this, especially with the
+memoization, works well for our purposes.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4-21" class="outline-3">
+<h3 id="sec-4-21"><span class="section-number-3">4.21</span> lib-noir &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-21">
+
+
+<ul>
+<li>Noir is dead, long live Noir
+</li>
+<li>Noir was a web framework for Clojure with lots of interesting ideas
+  that ended up being less than the sum of its parts
+</li>
+<li>So lib-noir was born: the best of its parts pulled out into a
+  reusable library
+</li>
+</ul>
+
+
+
+</div>
+
+<div id="outline-container-4-21-1" class="outline-4">
+<h4 id="sec-4-21-1"><span class="section-number-4">4.21.1</span> Notes</h4>
+<div class="outline-text-4" id="text-4-21-1">
+
+
+<p>
+As you can read on the slide, Noir is a web framework for Clojure that
+is now deprecated. It was full of interesting ideas and definitely
+helped make web development in Clojure easier, but over time, Clojure
+best practices jelled around using discrete composable libraries over
+frameworks and Noir's author, Chris Granger, deprecated it. The best
+parts of it were then pulled into a reusable library, lib-noir.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4-22" class="outline-3">
+<h3 id="sec-4-22"><span class="section-number-3">4.22</span> lib-noir features &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-22">
+
+
+<ul>
+<li>stateful sessions, cookies
+</li>
+<li>file uploads
+</li>
+<li>easier response management
+</li>
+<li>input validation
+</li>
+<li>route filtering
+</li>
+<li>content caching
+</li>
+</ul>
+
+
+
+</div>
+
+<div id="outline-container-4-22-1" class="outline-4">
+<h4 id="sec-4-22-1"><span class="section-number-4">4.22.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-4-22-1">
+
+
+<p>
+lib-noir, being the best parts of a web framework extracted into a
+library, is a grab bag of features, including cookies, input
+validation, and utility functions around routes and responses.
+Let's go through a few of them to show what they can do.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4-23" class="outline-3">
+<h3 id="sec-4-23"><span class="section-number-3">4.23</span> The lib-noir handler &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-23">
+
+
+
+
+
+<pre class="src src-clojure">(<span style="color: #6c71c4; font-style: italic;">require</span> '[noir.util.middleware])
+
+(<span style="color: #859900; font-weight: bold;">defn</span> <span style="color: #268BD2; font-weight: bold;">create-handler</span> [db]
+  (noir.util.middleware/app-handler
+   [(create-routes db)]))
+</pre>
+
+
+
+</div>
+
+<div id="outline-container-4-23-1" class="outline-4">
+<h4 id="sec-4-23-1"><span class="section-number-4">4.23.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-4-23-1">
+
+
+<p>
+The <code>noir.util.middleware</code> namespace includes many Ring middleware to
+make development easier and to enable Noir features. In order to use
+Noir's session handling and route restrictions, we have to use
+<code>app-handler</code>. Unlike compojure.handler's <code>app</code> handler, Noir's
+<code>app-handler</code> takes a vector of routers.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4-24" class="outline-3">
+<h3 id="sec-4-24"><span class="section-number-3">4.24</span> Responses with lib-noir &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-24">
+
+
+
+
+
+<pre class="src src-clojure">(<span style="color: #6c71c4; font-style: italic;">require</span> '[noir.response <span style="color: #d33682; font-weight: bold;">:as</span> response])
+
+(response/set-headers
+ {<span style="color: #00877C;">"x-defcon"</span> 3}
+ (response/status
+  400
+  (response/json
+   {<span style="color: #d33682; font-weight: bold;">:ok</span> false <span style="color: #d33682; font-weight: bold;">:errors</span> (debt-validator debt)})))
+</pre>
+
+
+
+</div>
+
+<div id="outline-container-4-24-1" class="outline-4">
+<h4 id="sec-4-24-1"><span class="section-number-4">4.24.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-4-24-1">
+
+
+<p>
+<code>noir.response</code> gives us a set of composable methods to build up
+responses. This is nothing special that you couldn't do on your own,
+but it's a nicety and a good example of how a uniform interface - take
+in a response and return a response - enables composition.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4-25" class="outline-3">
+<h3 id="sec-4-25"><span class="section-number-3">4.25</span> Login with lib-noir &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-25">
+
+
+<p>
+Use <code>noir.session</code> to handle session data, including login.
+</p>
+
+
+
+<pre class="src src-clojure">(<span style="color: #6c71c4; font-style: italic;">require</span> '[noir.session <span style="color: #d33682; font-weight: bold;">:as</span> session])
+
+(<span style="color: #859900; font-weight: bold;">defn</span> <span style="color: #268BD2; font-weight: bold;">login</span>
+  [credentials]
+  (<span style="color: #859900; font-weight: bold;">when</span> (valid? credentials)
+    (session/put! <span style="color: #d33682; font-weight: bold;">:user</span> (<span style="color: #d33682; font-weight: bold;">:username</span> credentials))))
+
+(<span style="color: #859900; font-weight: bold;">defn</span> <span style="color: #268BD2; font-weight: bold;">logout</span>
+  []
+  (session/remove! <span style="color: #d33682; font-weight: bold;">:user</span>))
+</pre>
+
+
+
+</div>
+
+<div id="outline-container-4-25-1" class="outline-4">
+<h4 id="sec-4-25-1"><span class="section-number-4">4.25.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-4-25-1">
+
+
+<p>
+<code>noir.session</code> uses an in-memory store to give us a stateful way to
+handle user data over HTTP, a stateless protocol. This is the first
+place in our application we have used data not passed into our
+function. It is a little unfortunate we have to do us, but balancing
+purity with practicality is necessary.
+</p>
+<p>
+Besides just letting us store session data, <code>noir.session</code> gives us
+flash-like functionality: that is, data that will last for only one
+request, allowing us to pass messages from form handlers to their
+redirected pages.
+</p>
+<p>
+There is a more complex library to do authentication and authorization
+I should mention: "friend" by Chas Emerick. It is a solid library that
+goes way beyond this, but I could also talk about it for an hour, so
+it's something to investigate on your own when you need a more robust
+login system than this.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4-26" class="outline-3">
+<h3 id="sec-4-26"><span class="section-number-3">4.26</span> Route protection with lib-noir &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-26">
+
+
+
+
+
+<pre class="src src-clojure">(<span style="color: #6c71c4; font-style: italic;">require</span> '[noir.session <span style="color: #d33682; font-weight: bold;">:as</span> session])
+(<span style="color: #6c71c4; font-style: italic;">require</span> '[noir.util.route <span style="color: #d33682; font-weight: bold;">:refer</span> [restricted]])
+
+(<span style="color: #859900; font-weight: bold;">defn-</span> <span style="color: #268BD2; font-weight: bold;">logged-in?</span> [request]
+  (session/get <span style="color: #d33682; font-weight: bold;">:user</span>))
+
+(<span style="color: #859900; font-weight: bold;">def</span> <span style="color: #268BD2; font-weight: bold;">app-routes</span>
+  (routes
+   (<span style="color: #268BD2; font-style: italic;">GET</span> <span style="color: #00877C;">"/debts"</span> [] (views/index-page db))
+   (<span style="color: #268BD2; font-style: italic;">GET</span> <span style="color: #00877C;">"/add-debt"</span> []
+        <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">This route will be checked for access rules.</span>
+        (restricted (views/add-debt-page)))))
+
+(<span style="color: #859900; font-weight: bold;">defn</span> <span style="color: #268BD2; font-weight: bold;">create-handler</span> [db]
+  (app-handler [app-routes]
+               <span style="color: #d33682; font-weight: bold;">:access-rules</span> [{<span style="color: #d33682; font-weight: bold;">:redirect</span> <span style="color: #00877C;">"/login"</span>
+                               <span style="color: #d33682; font-weight: bold;">:rules</span> [logged-in?]}]))
+</pre>
+
+
+
+</div>
+
+<div id="outline-container-4-26-1" class="outline-4">
+<h4 id="sec-4-26-1"><span class="section-number-4">4.26.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-4-26-1">
+
+
+<p>
+Wrapping a route view function in <code>restricted</code> causes Noir to check
+its access rules before calling the function. By default, any Noir
+access rules applies to all restricted routes, but you can specify the
+URL prefix for a rule with a :uri key. In this example, you can see
+that if you try to go to /add-debt if you are not logged in, you will
+be redirected to the login page.
+</p>
+<p>
+You can specify any number of access rules and by default they all
+have to pass, but Noir does allow for finer-grained control with AND
+and OR boolean logic to determine which rules have to pass, although
+we are not going to cover that here.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4-27" class="outline-3">
+<h3 id="sec-4-27"><span class="section-number-3">4.27</span> App review &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-27">
+
+
+<p>
+Let's look at the application now to see how all this fits together.
+</p>
+<p>
+tag: ex-noir
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-4-28" class="outline-3">
+<h3 id="sec-4-28"><span class="section-number-3">4.28</span> REST APIs with Liberator &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-28">
+
+
+<ul>
+<li>Liberator provides resources
+</li>
+<li>Resources are decision trees
+</li>
+<li>Resources provide a REST interface
+</li>
+<li>Resources are Ring handlers
+</li>
+</ul>
+
+
+
+</div>
+
+<div id="outline-container-4-28-1" class="outline-4">
+<h4 id="sec-4-28-1"><span class="section-number-4">4.28.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-4-28-1">
+
+
+<p>
+Liberator introduces a new layer into our application between the
+handler and the views: resources. Resources provide a RESTful
+interface and use a decision tree made up of decision functions to
+guide your request to the right handler function. Let's look at an
+example.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4-29" class="outline-3">
+<h3 id="sec-4-29"><span class="section-number-3">4.29</span> Simple Liberator decision tree &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-29">
+
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-4-30" class="outline-3">
+<h3 id="sec-4-30"><span class="section-number-3">4.30</span> Simple Liberator example &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-30">
+
+
+
+
+
+<pre class="src src-clojure">(<span style="color: #6c71c4; font-style: italic;">require</span> '[liberator.core <span style="color: #d33682; font-weight: bold;">:refer</span> [defresource]])
+
+(<span style="color: #859900; font-weight: bold;">defresource</span> <span style="color: #268BD2; font-weight: bold;">hello</span>
+  <span style="color: #d33682; font-weight: bold;">:exists?</span> (<span style="color: #859900; font-weight: bold;">fn</span> [ctx]
+             (<span style="color: #859900; font-weight: bold;">let</span> [lang (<span style="color: #6c71c4; font-style: italic;">get-in</span> ctx [<span style="color: #d33682; font-weight: bold;">:request</span> <span style="color: #d33682; font-weight: bold;">:params</span> <span style="color: #d33682; font-weight: bold;">:lang</span>])]
+               (<span style="color: #6c71c4; font-style: italic;">contains?</span> #{<span style="color: #00877C;">"en"</span> <span style="color: #00877C;">"es"</span>} lang)))
+  <span style="color: #d33682; font-weight: bold;">:handle-ok</span> (<span style="color: #859900; font-weight: bold;">fn</span> [ctx]
+               (<span style="color: #859900; font-weight: bold;">let</span> [lang (<span style="color: #6c71c4; font-style: italic;">get-in</span> ctx [<span style="color: #d33682; font-weight: bold;">:request</span> <span style="color: #d33682; font-weight: bold;">:params</span> <span style="color: #d33682; font-weight: bold;">:lang</span>])]
+                 (<span style="color: #859900; font-weight: bold;">if</span> (<span style="color: #6c71c4; font-style: italic;">=</span> lang <span style="color: #00877C;">"es"</span>)
+                   <span style="color: #00877C;">"Hola mundo!"</span>
+                   <span style="color: #00877C;">"Hello world!"</span>)))
+  <span style="color: #d33682; font-weight: bold;">:handle-not-found</span> (<span style="color: #859900; font-weight: bold;">fn</span> [ctx]
+                      <span style="color: #00877C;">"Language not found."</span>))
+</pre>
+
+
+
+</div>
+
+<div id="outline-container-4-30-1" class="outline-4">
+<h4 id="sec-4-30-1"><span class="section-number-4">4.30.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-4-30-1">
+
+
+<p>
+Look at the <code>exists?</code> function. It takes a context, which all
+functions in a resource should take. The context has the request in
+it, as well as the response. In this resource, we look to see if the
+language parameter is equal to "en" or "es" and if so, then
+<code>handle-ok</code> is called. If not, <code>handle-not-found</code> is called. We did
+not have to define <code>handle-ok</code> and <code>handle-not-found</code>: Liberator
+provides default functions for all decisions and handlers.
+</p>
+<p>
+There's repeated code here, though, to look up the language, and I
+probably should have looked it up a third time in
+<code>:handle-not-found</code>. Let's see how we can fix that.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4-31" class="outline-3">
+<h3 id="sec-4-31"><span class="section-number-3">4.31</span> Liberator context &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-31">
+
+
+
+
+
+<pre class="src src-clojure">(<span style="color: #6c71c4; font-style: italic;">require</span> '[liberator.core <span style="color: #d33682; font-weight: bold;">:refer</span> [defresource]])
+
+(<span style="color: #859900; font-weight: bold;">defresource</span> <span style="color: #268BD2; font-weight: bold;">hello</span>
+  <span style="color: #d33682; font-weight: bold;">:exists?</span> (<span style="color: #859900; font-weight: bold;">fn</span> [ctx]
+             (<span style="color: #859900; font-weight: bold;">let</span> [lang (<span style="color: #6c71c4; font-style: italic;">get-in</span> ctx [<span style="color: #d33682; font-weight: bold;">:request</span> <span style="color: #d33682; font-weight: bold;">:params</span> <span style="color: #d33682; font-weight: bold;">:lang</span>])]
+               (<span style="color: #859900; font-weight: bold;">if</span> (<span style="color: #6c71c4; font-style: italic;">contains?</span> #{<span style="color: #00877C;">"en"</span> <span style="color: #00877C;">"es"</span>} lang)
+                 {<span style="color: #d33682; font-weight: bold;">:lang</span> lang})))
+  <span style="color: #d33682; font-weight: bold;">:handle-ok</span> (<span style="color: #859900; font-weight: bold;">fn</span> [ctx]
+               (<span style="color: #859900; font-weight: bold;">let</span> [lang (<span style="color: #d33682; font-weight: bold;">:lang</span> ctx)]
+                 (<span style="color: #859900; font-weight: bold;">if</span> (<span style="color: #6c71c4; font-style: italic;">=</span> lang <span style="color: #00877C;">"es"</span>)
+                   <span style="color: #00877C;">"Hola mundo!"</span>
+                   <span style="color: #00877C;">"Hello world!"</span>)))
+  <span style="color: #d33682; font-weight: bold;">:handle-not-found</span> (<span style="color: #859900; font-weight: bold;">fn</span> [ctx]
+                      <span style="color: #00877C;">"Language not found."</span>))
+</pre>
+
+
+
+</div>
+
+<div id="outline-container-4-31-1" class="outline-4">
+<h4 id="sec-4-31-1"><span class="section-number-4">4.31.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-4-31-1">
+
+
+<p>
+See here how we returned a map from <code>exists?</code>? Any time we return a
+map, it is merged into the context map and available elsewhere. We
+could have even used destructuring to pull <code>lang</code> out, but I didn't
+want to confuse the issue. That's more idiomatic of my usage, though.
+</p>
+<p>
+We can't get <code>lang</code> so easily in <code>handle-not-found</code>, though. Liberator
+does provide a way, however.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4-32" class="outline-3">
+<h3 id="sec-4-32"><span class="section-number-3">4.32</span> Liberator context on decision failure &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-32">
+
+
+
+
+
+<pre class="src src-clojure">(<span style="color: #6c71c4; font-style: italic;">require</span> '[liberator.core <span style="color: #d33682; font-weight: bold;">:refer</span> [defresource]])
+
+(<span style="color: #859900; font-weight: bold;">defresource</span> <span style="color: #268BD2; font-weight: bold;">hello</span>
+  <span style="color: #d33682; font-weight: bold;">:exists?</span> (<span style="color: #859900; font-weight: bold;">fn</span> [{<span style="color: #d33682; font-weight: bold;">:keys</span> req}]
+             (<span style="color: #859900; font-weight: bold;">let</span> [lang (<span style="color: #6c71c4; font-style: italic;">get-in</span> req [<span style="color: #d33682; font-weight: bold;">:params</span> <span style="color: #d33682; font-weight: bold;">:lang</span>])]
+               <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">Return a vector instead of a map.</span>
+               [(<span style="color: #6c71c4; font-style: italic;">contains?</span> #{<span style="color: #00877C;">"en"</span> <span style="color: #00877C;">"es"</span>} lang) {<span style="color: #d33682; font-weight: bold;">:lang</span> lang}]))
+  <span style="color: #d33682; font-weight: bold;">:handle-ok</span> (<span style="color: #859900; font-weight: bold;">fn</span> [{<span style="color: #d33682; font-weight: bold;">:keys</span> [lang]}]
+               (<span style="color: #859900; font-weight: bold;">if</span> (<span style="color: #6c71c4; font-style: italic;">=</span> lang <span style="color: #00877C;">"es"</span>)
+                 <span style="color: #00877C;">"Hola mundo!"</span>
+                 <span style="color: #00877C;">"Hello world!"</span>))
+  <span style="color: #d33682; font-weight: bold;">:handle-not-found</span> (<span style="color: #859900; font-weight: bold;">fn</span> [{<span style="color: #d33682; font-weight: bold;">:keys</span> [lang]}]
+                      (<span style="color: #6c71c4; font-style: italic;">str</span> <span style="color: #00877C;">"Language "</span> lang <span style="color: #00877C;">" not found."</span>)))
+</pre>
+
+
+
+</div>
+
+<div id="outline-container-4-32-1" class="outline-4">
+<h4 id="sec-4-32-1"><span class="section-number-4">4.32.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-4-32-1">
+
+
+<p>
+Instead of returning a map from a decision function, we can return a
+length-2 vector, where the first element is whether the decision
+passed and the second is the map to update the context with.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4-33" class="outline-3">
+<h3 id="sec-4-33"><span class="section-number-3">4.33</span> More complex decision tree &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-33">
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-4-34" class="outline-3">
+<h3 id="sec-4-34"><span class="section-number-3">4.34</span> Liberator decisions &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-34">
+
+
+<ul>
+<li>allowed?
+</li>
+<li>authorized?
+</li>
+<li>exists?
+</li>
+<li>existed?
+</li>
+<li>known-content-type?
+</li>
+<li>method-allowed?
+</li>
+<li>moved-permanently?
+</li>
+<li>moved-temporarily?
+</li>
+</ul>
+
+
+
+</div>
+
+<div id="outline-container-4-34-1" class="outline-4">
+<h4 id="sec-4-34-1"><span class="section-number-4">4.34.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-4-34-1">
+
+
+<p>
+These are just a few of the decisions in Liberator. The full list is
+very long, but luckily all of them have reasonable defaults, so you
+only need to define the ones pertaining to your resource.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4-35" class="outline-3">
+<h3 id="sec-4-35"><span class="section-number-3">4.35</span> Liberator handlers and actions &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-35">
+
+
+<ul>
+<li>Handlers
+<ul>
+<li>handle-ok
+</li>
+<li>handle-created
+</li>
+<li>handle-forbidden
+</li>
+<li>handle-not-found
+</li>
+<li>handle-not-implemented
+
+</li>
+</ul>
+
+</li>
+<li>Actions
+<ul>
+<li>post!
+</li>
+<li>put!
+</li>
+<li>delete!
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+
+</div>
+
+<div id="outline-container-4-35-1" class="outline-4">
+<h4 id="sec-4-35-1"><span class="section-number-4">4.35.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-4-35-1">
+
+
+<p>
+Like with the decisions, these are only a few of the handlers in
+Liberator. These are all the actions in Liberator, though. I didn't
+mention actions before, but they are what they look like: functions
+for dealing with requests that do not use the GET method, and which
+likely have side-effects. These do continue on to handlers. For
+example, <code>post!</code> checks a decision function, <code>new?</code>, after it
+completes successfully. If <code>new?</code> is true, <code>handle-created</code> is called.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4-36" class="outline-3">
+<h3 id="sec-4-36"><span class="section-number-3">4.36</span> Liberator's decision graph &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-36">
+
+
+<p>
+<a href="http://clojure-liberator.github.io/liberator/assets/img/decision-graph.svg">Link to decision graph</a>
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-4-37" class="outline-3">
+<h3 id="sec-4-37"><span class="section-number-3">4.37</span> Liberator representations &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-37">
+
+
+<ul>
+<li>Handlers return <i>representations</i>
+</li>
+<li><code>liberator.representation/Representation</code> is a protocol
+</li>
+<li>This protocol defines <code>as-response</code>, which returns a Ring response
+</li>
+<li><b>Very tricky</b>: maps extend this protocol
+</li>
+<li>Use <code>liberator.representation/ring-response</code> to avoid transformation
+</li>
+</ul>
+
+
+
+</div>
+
+<div id="outline-container-4-37-1" class="outline-4">
+<h4 id="sec-4-37-1"><span class="section-number-4">4.37.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-4-37-1">
+
+
+<p>
+Like Compojure, Liberator tries to do the smart thing with your
+response. Unlike Compojure, Liberator has a lot more logic around this
+and does not treat maps as Ring responses. Depending on the
+content-type, your map might be rendered as an HTML table, a CSV, or
+transformed into JSON or XML. If you have a map you have created as a
+Ring response, make sure to use liberator.representation/ring-response
+to designate it as a response. This has bit me as a subtle bug in the
+past.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4-38" class="outline-3">
+<h3 id="sec-4-38"><span class="section-number-3">4.38</span> App review &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-38">
+
+
+<p>
+Let's see how we have used Liberator to turn parts of our application
+into reusable resources.
+</p>
+<p>
+Tag: ex-liberator
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-4-39" class="outline-3">
+<h3 id="sec-4-39"><span class="section-number-3">4.39</span> ClojureScript &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-39">
+
+
+<p>
+Compiles Clojure to JavaScript
+</p>
+
+
+
+<pre class="src src-clojure">(js/alert <span style="color: #00877C;">"Hello, world!"</span>)
+(<span style="color: #268BD2; font-style: italic;">.log</span> js/console <span style="color: #00877C;">"Hello, world!"</span>)
+</pre>
+
+
+
+<pre class="src src-js">alert(<span style="color: #00877C;">"Hello, world!"</span>);
+console.log(<span style="color: #00877C;">"Hello, world!"</span>);
+</pre>
+
+
+
+</div>
+
+<div id="outline-container-4-39-1" class="outline-4">
+<h4 id="sec-4-39-1"><span class="section-number-4">4.39.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-4-39-1">
+
+
+<p>
+ClojureScript is a Clojure-to-JavaScript compiler. We could spend
+three hours on ClojureScript alone, and so any discussion of
+ClojureScript here will be at a cursory level. It is important,
+though, as it completes our ability to do web development with one
+unified language.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4-40" class="outline-3">
+<h3 id="sec-4-40"><span class="section-number-3">4.40</span> Building JS from CLJS &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-40">
+
+
+<p>
+Add the <code>lein-cljsbuild</code> plugin to your <code>project.clj</code>.
+</p>
+
+
+
+<pre class="src src-clojure">(<span style="color: #859900; font-weight: bold;">defproject</span> <span style="color: #268BD2; font-weight: bold;">we-owe</span> <span style="color: #00877C;">"0.1.0-SNAPSHOT"</span>
+  <span style="color: #d33682; font-weight: bold;">:plugins</span> [[lein-cljsbuild <span style="color: #00877C;">"0.3.2"</span>]]
+  <span style="color: #d33682; font-weight: bold;">:cljsbuild</span>
+  {<span style="color: #d33682; font-weight: bold;">:builds</span> [{<span style="color: #d33682; font-weight: bold;">:source-paths</span> [<span style="color: #00877C;">"src-cljs"</span>]
+             <span style="color: #d33682; font-weight: bold;">:compiler</span>
+             {<span style="color: #d33682; font-weight: bold;">:output-to</span> <span style="color: #00877C;">"resources/public/js/main.js"</span>
+              <span style="color: #d33682; font-weight: bold;">:optimizations</span> <span style="color: #d33682; font-weight: bold;">:whitespace</span>
+              <span style="color: #d33682; font-weight: bold;">:pretty-print</span> true}}]})
+</pre>
+
+
+
+<pre class="src src-shell-script">lein cljsbuild once <span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">Compile once.</span>
+lein cljsbuild auto <span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">Compile on every change.</span>
+</pre>
+
+
+
+</div>
+
+<div id="outline-container-4-40-1" class="outline-4">
+<h4 id="sec-4-40-1"><span class="section-number-4">4.40.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-4-40-1">
+
+
+<p>
+ClojureScript is compiled before deployment, and to see it in action
+in our application we have to have cljsbuild running. Because it runs
+through this other mechanism, it is not as easy to play with as
+Clojure: you can't easily compile it from the REPL. There are methods
+to get a separate REPL for your ClojureScript, which can be very
+useful for debugging, but that's a more advanced topic than we are
+discussing today.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4-41" class="outline-3">
+<h3 id="sec-4-41"><span class="section-number-3">4.41</span> Sharing code between Clojure and ClojureScript &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-41">
+
+
+
+
+
+<pre class="src src-clojure">(<span style="color: #859900; font-weight: bold;">defproject</span> <span style="color: #268BD2; font-weight: bold;">we-owe</span> <span style="color: #00877C;">"0.1.0-SNAPSHOT"</span>
+  <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">Specify namespaces to compile for both.</span>
+  <span style="color: #d33682; font-weight: bold;">:cljsbuild</span> {<span style="color: #d33682; font-weight: bold;">:crossovers</span> [us.dreisbach.we-owe.views.templates]})
+</pre>
+
+
+<ul>
+<li>Code must not rely on other code that cannot be compiled to JS.
+</li>
+</ul>
+
+
+
+</div>
+
+<div id="outline-container-4-41-1" class="outline-4">
+<h4 id="sec-4-41-1"><span class="section-number-4">4.41.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-4-41-1">
+
+
+<p>
+One of the most exciting things about working with ClojureScript is
+that you can share code between your front- and back-end. This promise
+has come up many times recently in the JavaScript world. This talk is
+obviously not to slag on JavaScript, but I believe that this is even
+more exciting with Clojure. JavaScript does not have a unified way to
+require and import code or manage namespaces, making code use often
+look different on the back end than the front end, and causing code
+reuse to be complicated. Clojure and ClojureScript are the same
+language, and with the exception of macros, require code in the exact
+same way.
+</p>
+<p>
+While Clojure and ClojureScript are the same language, they are
+powered by different engines, and Clojure is a language that embraces
+its host platform. Because of this, you do have to be careful when
+sharing code to make sure not to rely on libraries that use Java or
+JavaScript interop. In the example I have, I'll show how I handled that.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4-42" class="outline-3">
+<h3 id="sec-4-42"><span class="section-number-3">4.42</span> App review &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-42">
+
+
+<p>
+Let's look at some simple ClojureScript interaction and see how to
+reuse Hiccup templates between the front-end and back-end.
+</p>
+<p>
+Tag: ex-cljs
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> Pulling Things Together</h2>
+<div class="outline-text-2" id="text-5">
+
+
+</div>
+
+<div id="outline-container-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="section-number-3">5.1</span> Pulling Things Together &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-5-1">
+
+
+</div>
+
+<div id="outline-container-5-1-1" class="outline-4">
+<h4 id="sec-5-1-1"><span class="section-number-4">5.1.1</span> Notes</h4>
+<div class="outline-text-4" id="text-5-1-1">
+
+
+<p>
+Having all these libraries at hand is nice, but once you know what
+you're doing, assembling all this by hand every time seems like a
+burden. How do we get a unified experience while maintaining Clojure's
+flexibility?
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-5-2" class="outline-3">
+<h3 id="sec-5-2"><span class="section-number-3">5.2</span> Luminus &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-5-2">
+
+
+<p>
+A different kind of framework - <a href="http://www.luminusweb.net/">http://www.luminusweb.net/</a>
+</p>
+<ul>
+<li>Ring
+</li>
+<li>Compojure
+</li>
+<li>lib-noir
+</li>
+<li>Clabango
+</li>
+<li>SQL Korma
+</li>
+<li>ClojureScript
+</li>
+<li>Twitter Bootstrap
+</li>
+</ul>
+
+
+
+</div>
+
+<div id="outline-container-5-2-1" class="outline-4">
+<h4 id="sec-5-2-1"><span class="section-number-4">5.2.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-5-2-1">
+
+
+<p>
+Luminus isn't a framework in the sense that Ruby on Rails or Django
+are frameworks. It's solely a curated set of Clojure libraries and a
+Leiningen template to build out a web application. There is no
+"Luminus code." This is good, insomuch as it fits the Clojure way. It
+is not what you might expect if coming from another language, but the
+libraries are selected to fit together well and cover common web
+application scenarios.
+</p>
+<p>
+One of the nicest parts of Luminus is the documentation. Even if
+you're not using Luminus, if you're using any of the libraries it
+uses, the documentation is worth checking out.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-5-3" class="outline-3">
+<h3 id="sec-5-3"><span class="section-number-3">5.3</span> Rolling your own framework &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-5-3">
+
+
+
+
+
+<pre class="src src-shell-script">leiningen new template rosebud --to-dir rosebud template
+</pre>
+
+
+
+<pre class="src src-fundamental">&#9500;&#9472;&#9472; README.md
+&#9500;&#9472;&#9472; project.clj
+&#9492;&#9472;&#9472; src
+    &#9492;&#9472;&#9472; leiningen
+        &#9492;&#9472;&#9472; new
+            &#9500;&#9472;&#9472; rosebud
+            &#9474;&#160;&#160; &#9492;&#9472;&#9472; foo.clj
+            &#9492;&#9472;&#9472; rosebud.clj
+</pre>
+
+
+
+</div>
+
+<div id="outline-container-5-3-1" class="outline-4">
+<h4 id="sec-5-3-1"><span class="section-number-4">5.3.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-5-3-1">
+
+
+<p>
+You can use Leiningen templates to create your own framework in the
+same way Luminus does. I don't agree with all of Luminus'
+decisions. For example, they use Clabango for templating, which not
+only is based off Django templating, the worst part of Django in my
+opinion, but also, it's named Clabango, which is insane. 
+</p>
+<p>
+To create a new template, run the command above, substituting out the
+name rosebud, of course.
+</p>
+<p>
+Let's take a look at what this template gives us.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-5-4" class="outline-3">
+<h3 id="sec-5-4"><span class="section-number-3">5.4</span> rosebud.clj &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-5-4">
+
+
+
+
+<pre class="src src-clojure">(<span style="color: #859900; font-weight: bold;">ns</span> leiningen.new.rosebud
+  (<span style="color: #d33682; font-weight: bold;">:use</span> [leiningen.new.templates
+         <span style="color: #d33682; font-weight: bold;">:only</span> [renderer name-to-path -&gt;files]]))
+
+(<span style="color: #859900; font-weight: bold;">def</span> <span style="color: #268BD2; font-weight: bold;">render</span> (renderer <span style="color: #00877C;">"rosebud"</span>))
+
+(<span style="color: #859900; font-weight: bold;">defn</span> <span style="color: #268BD2; font-weight: bold;">rosebud</span>
+  <span style="color: #00877C; font-style: italic;">"FIXME: write documentation"</span>
+  [name]
+  (<span style="color: #859900; font-weight: bold;">let</span> [data {<span style="color: #d33682; font-weight: bold;">:name</span> name
+              <span style="color: #d33682; font-weight: bold;">:sanitized</span> (name-to-path name)}]
+    (-&gt;files data
+             [<span style="color: #00877C;">"src/{{sanitized}}/foo.clj"</span>
+              (render <span style="color: #00877C;">"foo.clj"</span> data)])))
+</pre>
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> Conclusion &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h2>
+<div class="outline-text-2" id="text-6">
+
+
+<p>
+That's it! Go make a web!
+</p>
+<p>
+@cndreisbach
+</p>
+<p>
+clinton@dreisbach.us
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> <span class="todo TODO">TODO</span> Future Approaches</h2>
+<div class="outline-text-2" id="text-7">
+
+
+</div>
+
+<div id="outline-container-7-1" class="outline-3">
+<h3 id="sec-7-1"><span class="section-number-3">7.1</span> <span class="todo TODO">TODO</span> Hoplon and XML-RPC</h3>
+<div class="outline-text-3" id="text-7-1">
+
+</div>
+
+</div>
+
+<div id="outline-container-7-2" class="outline-3">
+<h3 id="sec-7-2"><span class="section-number-3">7.2</span> <span class="todo TODO">TODO</span> Pedestal?</h3>
+<div class="outline-text-3" id="text-7-2">
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-8" class="outline-2">
+<h2 id="sec-8"><span class="section-number-2">8</span> <span class="todo TODO">TODO</span> Topics I Didn't Cover</h2>
+<div class="outline-text-2" id="text-8">
+
+
+</div>
+
+<div id="outline-container-8-1" class="outline-3">
+<h3 id="sec-8-1"><span class="section-number-3">8.1</span> <span class="todo TODO">TODO</span> XML-RPC (necessary-evil)</h3>
+<div class="outline-text-3" id="text-8-1">
+
+</div>
+
+</div>
+
+<div id="outline-container-8-2" class="outline-3">
+<h3 id="sec-8-2"><span class="section-number-3">8.2</span> <span class="todo TODO">TODO</span> FRP with Javelin</h3>
+<div class="outline-text-3" id="text-8-2">
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-9" class="outline-2">
+<h2 id="sec-9"><span class="section-number-2">9</span> End</h2>
+<div class="outline-text-2" id="text-9">
+
+
+
+
+
+
+
+<script type="text/javascript" src="org-html-slideshow.js"></script>
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-10" class="outline-2">
+<h2 id="sec-10"><span class="section-number-2">10</span> New Slides to Add</h2>
+<div class="outline-text-2" id="text-10">
+
+
+</div>
+
+<div id="outline-container-10-1" class="outline-3">
+<h3 id="sec-10-1"><span class="section-number-3">10.1</span> <span class="todo TODO">TODO</span> New section on SQL Korma</h3>
+<div class="outline-text-3" id="text-10-1">
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-11" class="outline-2">
+<h2 id="sec-11"><span class="section-number-2">11</span> Notes</h2>
+<div class="outline-text-2" id="text-11">
+
+
+</div>
+
+<div id="outline-container-11-1" class="outline-3">
+<h3 id="sec-11-1"><span class="section-number-3">11.1</span> <span class="todo TODO">TODO</span> Compare more often to other things: Rails, Django, Connect</h3>
+<div class="outline-text-3" id="text-11-1">
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-12" class="outline-2">
+<h2 id="sec-12"><span class="section-number-2">12</span> Notes from Sam</h2>
+<div class="outline-text-2" id="text-12">
+
+
+</div>
+
+<div id="outline-container-12-1" class="outline-3">
+<h3 id="sec-12-1"><span class="section-number-3">12.1</span> add example apps: qu talks to mongo</h3>
+<div class="outline-text-3" id="text-12-1">
+
+
+</div>
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2013-07-04 23:21:24 EDT</p>
+<p class="author">Author: Clinton Dreisbach</p>
+<p class="creator">Org version 7.8.11 with Emacs version 24</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+</body>
+</html>
