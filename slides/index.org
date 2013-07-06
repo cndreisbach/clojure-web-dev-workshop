@@ -1247,6 +1247,14 @@ reuse Hiccup templates between the front-end and back-end.
 
 Tag: ex-cljs
 
+** Summary                                                            :slide:
+
+- Ring is designed around a function that takes a request and returns a response
+- Compojure and Liberator are layers on top of that, but do the same thing
+- Hiccup and Cheshire generate HTML and JSON respectively
+- Garden and ClojureScript generate CSS and JavaScript
+- lib-noir provides sessions and helper functions
+
 * Pulling Things Together
 ** Pulling Things Together                                            :slide:
 *** Notes
@@ -1329,6 +1337,10 @@ Let's take a look at what this template gives us.
                ["src/{{sanitized}}/foo.clj"
                 (render "foo.clj" data)])))
 #+END_SRC
+* TODO Future Approaches
+** TODO Hoplon and XML-RPC
+** TODO Pedestal?
+
 * Conclusion                                                          :slide:
 
 That's it! Go make a web!
@@ -1337,13 +1349,6 @@ That's it! Go make a web!
 
 clinton@dreisbach.us
 
-* TODO Future Approaches
-** TODO Hoplon and XML-RPC
-** TODO Pedestal?
-
-* TODO Topics I Didn't Cover
-** TODO XML-RPC (necessary-evil)
-** TODO FRP with Javelin
 * End
 
 #+PROPERTY: tangle yes
@@ -1365,13 +1370,4 @@ clinton@dreisbach.us
 # org-export-html-style-include-scripts: nil
 # End:
 
-
-* New Slides to Add
-** TODO New section on SQL Korma
-
-* Notes
-** TODO Compare more often to other things: Rails, Django, Connect
-
-* Notes from Sam
-** add example apps: qu talks to mongo
 
