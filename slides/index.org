@@ -1338,9 +1338,154 @@ Let's take a look at what this template gives us.
                 (render "foo.clj" data)])))
 #+END_SRC
 * TODO Future Approaches
-** TODO Hoplon and XML-RPC
-** TODO Pedestal?
+** Pedestal                                                           :slide:
 
+- Developed by Relevance
+- New to the scene
+- Separates app into client and service
+- Good for JavaScript-heavy, single-page apps
+
+*** Notes                                                             :notes:
+
+Pedestal is a very new framework developed by Relevance, Inc. Full
+disclosure: I used to work for Relevance and saw some of the earliest
+versions of this. I'll be straight with you about Pedestal: it's a
+totally different approach and is under-documented, and so it can seem
+inpenetrable. I don't know it very well and I'm friends with its
+creators. I want to try to show you the most basic parts of it, though.
+
+The Pedestal /client/ is the front-end of the application and the
+/service/ is the back-end, and you develop them in different leiningen
+projects. The service has some unique features, but is very much like
+what we've seen with Ring and Compojure, so I'm going to focus on the
+client.
+
+** The Pedestal client                                                :slide:
+
+#+BEGIN_SRC ditaa :file pedestal-client.png :cache yes :cmdline -r -s 1.5
++----------+    +---------------------+    +----------+           +----------+
+| {io}     |    |                     |    |          |           |          |
+| Messages +--->| Transform functions +--->| Emitters +--deltas-->| Renderer |
+| cFF8     |    | cFB5                |    | cF43     |           | cDE8     |
++----------+    +----------+----------+    +----------+           +----------+
+                           |
+                           |
+                           v
+                   +--------------+
+                   |              |
+                   | Side effects |
+                   | c77A         |
+                   +--------------+
+#+END_SRC
+
+*** Notes                                                             :notes:
+
+The basics of a Pedestal client are simple. You create transform
+functions, which take messages and alter your data model. There's a
+few things you can do in transform functions, like combine messages
+and execute side effects, which we'll skip here. Transform functions
+are associated with particular parts of your data model. They take a
+message and return the updated data model and pass that to your
+emitters. The emitters use that to send /deltas/ - changes in your
+application state - to the renderer, which updates the DOM to show
+your changes.
+
+Imagine that you have a simple counter on a page. Your Pedestal client
+application receives a message saying increase your counter. You have
+a transform function associated with your counter that takes the
+message and updates the counter. It sends the new value of the counter
+to an emitter, which sends a message to your renderer that says the
+counter has this new value. The renderer updates the DOM and the user
+sees the new value of the counter.
+
+If that sounds very different from how you structure a web
+application, you are not alone. This is very powerful, but is a lot of
+infrastructure. Let's see parts of this in action.
+
+** A Pedestal transform function                                      :slide:
+#+BEGIN_SRC clojure
+  (defn inc-transform [old-value message]
+    ((fnil inc 0) old-value))
+  
+  (def example-app
+    {;; Send any :inc message with the path :my-counter to the
+     ;; inc-transform function.
+     :transform [[:inc   [:my-counter] inc-transform]]})
+#+END_SRC
+
+*** Notes                                                             :notes:
+
+Our Pedestal app is just a map. Right now, we just have the
+key :transform in it, and :transform has a vector as its value. That
+vector is made up of vectors of transformations. We just have one and
+it says, take any message with the topic :inc and the path :my-counter
+and send that to our function, inc-transform. =inc-transform= takes
+the old value of :my-counter and the message and returns the old value
+plus 1. We use fnil in case the old value is nil.
+
+** A Pedestal emitter                                                 :slide:
+
+#+BEGIN_SRC clojure
+  (def example-app
+    {:transform [[:inc   [:my-counter] inc-transform]]
+  
+     ;; Configure a sequence of emitters.
+     ;; Emitters report change. This uses the default Pedestal
+     ;; emitter to report changes, or _deltas_.
+     
+     :emit [;; This default emitter sends all messages and prefixes
+            ;; their path with :main.
+            {:in #{[:*]} :fn (app/default-emitter [:main])}]})
+#+END_SRC
+
+*** Notes                                                             :notes:
+
+We've now added an emitter to the application. I mentioned the
+application state in passing before. Your data model and your
+application state are different views of the same reality. While your
+data model may be a flat map of keys and values, your application
+model is a tree that gets updated and emitters send those updates to
+the renderer. These are separate because the same data model may be
+used multiple times in an application and needs to be reflected in
+each part of the application state that is associated with a part of
+the view. It's a tree so you can tell the renderer to update a whole
+section at once.
+
+The emitter above is the default renderer, which just sends the
+changes on, and we tell it to put all changes under the node :main.
+
+Our renderer is set up separately from the app. In order to see it in
+action, let's actually go look at it in action.
+
+** Pedestal in action                                                 :slide:
+
+Let's go to the code.
+
+*** Notes                                                             :notes:
+
+Show Pedestal running - go to the index page to show the
+directions. Show =start.cljs= to see the renderer set up and then show
+=behavior.clj= so people can see our transforms and renderers. Explain
+the two emitters and :transform-enable. Go to the app and click the
+button, then show adding a new message topic.
+
+** Pedestal summary                                                   :slide:
+
+- Pedestal is focused on JS-heavy apps
+- It is very new and under development
+- The client takes messages, updates the data model, transforms the
+  app model and emits new messages to the renderer
+- The service sends and receives messages
+
+*** Notes                                                             :notes:
+
+Who all followed that? If you didn't, I apologize and I can try to
+answer questions, but as I said, Pedestal is still under-documented
+and I do not understand all of it. Luckily, there's a new tutorial on
+it written by one of the main developers, Brenton Ashworth, that
+either will be released soon or is released already.
+
+** TODO Hoplon
 * Conclusion                                                          :slide:
 
 That's it! Go make a web!

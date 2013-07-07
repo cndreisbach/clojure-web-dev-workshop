@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="title" content="Functional Web Development with Clojure"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2013-07-04 23:21:24 EDT"/>
+<meta name="generated" content="2013-07-06T22:22-0400"/>
 <meta name="author" content="Clinton Dreisbach"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -264,6 +264,7 @@
 </ul>
 </li>
 <li><a href="#sec-4-42">4.42 App review</a></li>
+<li><a href="#sec-4-43">4.43 Summary</a></li>
 </ul>
 </li>
 <li><a href="#sec-5">5 Pulling Things Together</a>
@@ -286,35 +287,24 @@
 <li><a href="#sec-5-4">5.4 rosebud.clj</a></li>
 </ul>
 </li>
-<li><a href="#sec-6">6 Conclusion</a></li>
-<li><a href="#sec-7">7 Future Approaches</a>
+<li><a href="#sec-6">6 Future Approaches</a>
 <ul>
-<li><a href="#sec-7-1">7.1 Hoplon and XML-RPC</a></li>
-<li><a href="#sec-7-2">7.2 Pedestal?</a></li>
+<li><a href="#sec-6-1">6.1 Pedestal</a>
+<ul>
+<li><a href="#sec-6-1-1">6.1.1 Notes</a></li>
 </ul>
 </li>
-<li><a href="#sec-8">8 Topics I Didn't Cover</a>
+<li><a href="#sec-6-2">6.2 The Pedestal client</a>
 <ul>
-<li><a href="#sec-8-1">8.1 XML-RPC (necessary-evil)</a></li>
-<li><a href="#sec-8-2">8.2 FRP with Javelin</a></li>
+<li><a href="#sec-6-2-1">6.2.1 Notes</a></li>
 </ul>
 </li>
-<li><a href="#sec-9">9 End</a></li>
-<li><a href="#sec-10">10 New Slides to Add</a>
-<ul>
-<li><a href="#sec-10-1">10.1 New section on SQL Korma</a></li>
+<li><a href="#sec-6-3">6.3 Hoplon and XML-RPC</a></li>
+<li><a href="#sec-6-4">6.4 Pedestal?</a></li>
 </ul>
 </li>
-<li><a href="#sec-11">11 Notes</a>
-<ul>
-<li><a href="#sec-11-1">11.1 Compare more often to other things: Rails, Django, Connect</a></li>
-</ul>
-</li>
-<li><a href="#sec-12">12 Notes from Sam</a>
-<ul>
-<li><a href="#sec-12-1">12.1 add example apps: qu talks to mongo</a></li>
-</ul>
-</li>
+<li><a href="#sec-7">7 Conclusion</a></li>
+<li><a href="#sec-8">8 End</a></li>
 </ul>
 </div>
 </div>
@@ -2493,6 +2483,29 @@ reuse Hiccup templates between the front-end and back-end.
 Tag: ex-cljs
 </p>
 </div>
+
+</div>
+
+<div id="outline-container-4-43" class="outline-3">
+<h3 id="sec-4-43"><span class="section-number-3">4.43</span> Summary &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-43">
+
+
+<ul>
+<li>Ring is designed around a function that takes a request and returns a response
+</li>
+<li>Compojure and Liberator are layers on top of that, but do the same thing
+</li>
+<li>Hiccup and Cheshire generate HTML and JSON respectively
+</li>
+<li>Garden and ClojureScript generate CSS and JavaScript
+</li>
+<li>lib-noir provides sessions and helper functions
+</li>
+</ul>
+
+
+</div>
 </div>
 
 </div>
@@ -2660,8 +2673,104 @@ Let's take a look at what this template gives us.
 </div>
 
 <div id="outline-container-6" class="outline-2">
-<h2 id="sec-6"><span class="section-number-2">6</span> Conclusion &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h2>
+<h2 id="sec-6"><span class="section-number-2">6</span> Future Approaches</h2>
 <div class="outline-text-2" id="text-6">
+
+
+</div>
+
+<div id="outline-container-6-1" class="outline-3">
+<h3 id="sec-6-1"><span class="section-number-3">6.1</span> Pedestal &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-6-1">
+
+
+<ul>
+<li>Developed by Relevance
+</li>
+<li>New to the scene
+</li>
+<li>Separates app into client and service
+</li>
+<li>Good for JavaScript-heavy, single-page apps
+</li>
+</ul>
+
+
+
+</div>
+
+<div id="outline-container-6-1-1" class="outline-4">
+<h4 id="sec-6-1-1"><span class="section-number-4">6.1.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-6-1-1">
+
+
+<p>
+Pedestal is a very new framework developed by Relevance, Inc. Full
+disclosure: I used to work for Relevance and saw some of the earliest
+versions of this. I'll be straight with you about Pedestal: it's a
+totally different approach and is under-documented, and so it can seem
+inpenetrable. I don't know it very well and I'm friends with its
+creators. I want to try to show you the most basic parts of it, though.
+</p>
+<p>
+The Pedestal <i>client</i> is the front-end of the application and the
+<i>service</i> is the back-end, and you develop them in different leiningen
+projects. The service has some unique features, but is very much like
+what we've seen with Ring and Compojure, so I'm going to focus on the
+client.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-6-2" class="outline-3">
+<h3 id="sec-6-2"><span class="section-number-3">6.2</span> The Pedestal client &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-6-2">
+
+
+
+
+<p>
+<img src="pedestal-client.png"  alt="pedestal-client.png" />
+</p>
+
+</div>
+
+<div id="outline-container-6-2-1" class="outline-4">
+<h4 id="sec-6-2-1"><span class="section-number-4">6.2.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-6-2-1">
+
+
+<p>
+The basics of a Pedestal client are simple. You create emitters, which 
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-6-3" class="outline-3">
+<h3 id="sec-6-3"><span class="section-number-3">6.3</span> <span class="todo TODO">TODO</span> Hoplon and XML-RPC</h3>
+<div class="outline-text-3" id="text-6-3">
+
+</div>
+
+</div>
+
+<div id="outline-container-6-4" class="outline-3">
+<h3 id="sec-6-4"><span class="section-number-3">6.4</span> <span class="todo TODO">TODO</span> Pedestal?</h3>
+<div class="outline-text-3" id="text-6-4">
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> Conclusion &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h2>
+<div class="outline-text-2" id="text-7">
 
 
 <p>
@@ -2677,58 +2786,9 @@ clinton@dreisbach.us
 
 </div>
 
-<div id="outline-container-7" class="outline-2">
-<h2 id="sec-7"><span class="section-number-2">7</span> <span class="todo TODO">TODO</span> Future Approaches</h2>
-<div class="outline-text-2" id="text-7">
-
-
-</div>
-
-<div id="outline-container-7-1" class="outline-3">
-<h3 id="sec-7-1"><span class="section-number-3">7.1</span> <span class="todo TODO">TODO</span> Hoplon and XML-RPC</h3>
-<div class="outline-text-3" id="text-7-1">
-
-</div>
-
-</div>
-
-<div id="outline-container-7-2" class="outline-3">
-<h3 id="sec-7-2"><span class="section-number-3">7.2</span> <span class="todo TODO">TODO</span> Pedestal?</h3>
-<div class="outline-text-3" id="text-7-2">
-
-
-</div>
-</div>
-
-</div>
-
 <div id="outline-container-8" class="outline-2">
-<h2 id="sec-8"><span class="section-number-2">8</span> <span class="todo TODO">TODO</span> Topics I Didn't Cover</h2>
+<h2 id="sec-8"><span class="section-number-2">8</span> End</h2>
 <div class="outline-text-2" id="text-8">
-
-
-</div>
-
-<div id="outline-container-8-1" class="outline-3">
-<h3 id="sec-8-1"><span class="section-number-3">8.1</span> <span class="todo TODO">TODO</span> XML-RPC (necessary-evil)</h3>
-<div class="outline-text-3" id="text-8-1">
-
-</div>
-
-</div>
-
-<div id="outline-container-8-2" class="outline-3">
-<h3 id="sec-8-2"><span class="section-number-3">8.2</span> <span class="todo TODO">TODO</span> FRP with Javelin</h3>
-<div class="outline-text-3" id="text-8-2">
-
-</div>
-</div>
-
-</div>
-
-<div id="outline-container-9" class="outline-2">
-<h2 id="sec-9"><span class="section-number-2">9</span> End</h2>
-<div class="outline-text-2" id="text-9">
 
 
 
@@ -2741,64 +2801,13 @@ clinton@dreisbach.us
 
 
 </div>
-
-</div>
-
-<div id="outline-container-10" class="outline-2">
-<h2 id="sec-10"><span class="section-number-2">10</span> New Slides to Add</h2>
-<div class="outline-text-2" id="text-10">
-
-
-</div>
-
-<div id="outline-container-10-1" class="outline-3">
-<h3 id="sec-10-1"><span class="section-number-3">10.1</span> <span class="todo TODO">TODO</span> New section on SQL Korma</h3>
-<div class="outline-text-3" id="text-10-1">
-
-
-</div>
-</div>
-
-</div>
-
-<div id="outline-container-11" class="outline-2">
-<h2 id="sec-11"><span class="section-number-2">11</span> Notes</h2>
-<div class="outline-text-2" id="text-11">
-
-
-</div>
-
-<div id="outline-container-11-1" class="outline-3">
-<h3 id="sec-11-1"><span class="section-number-3">11.1</span> <span class="todo TODO">TODO</span> Compare more often to other things: Rails, Django, Connect</h3>
-<div class="outline-text-3" id="text-11-1">
-
-
-</div>
-</div>
-
-</div>
-
-<div id="outline-container-12" class="outline-2">
-<h2 id="sec-12"><span class="section-number-2">12</span> Notes from Sam</h2>
-<div class="outline-text-2" id="text-12">
-
-
-</div>
-
-<div id="outline-container-12-1" class="outline-3">
-<h3 id="sec-12-1"><span class="section-number-3">12.1</span> add example apps: qu talks to mongo</h3>
-<div class="outline-text-3" id="text-12-1">
-
-
-</div>
-</div>
 </div>
 </div>
 
 <div id="postamble">
-<p class="date">Date: 2013-07-04 23:21:24 EDT</p>
+<p class="date">Date: 2013-07-06T22:22-0400</p>
 <p class="author">Author: Clinton Dreisbach</p>
-<p class="creator">Org version 7.8.11 with Emacs version 24</p>
+<p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.3f with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 24</p>
 <a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
 
 </div>
