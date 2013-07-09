@@ -9,7 +9,8 @@
 
 #+BEGIN_HTML
 <p class="presenters">
-Clinton Dreisbach
+Clinton Dreisbach<br />
+<a href="http://clojurewebdev.com">clojurewebdev.com</a>
 </p>
 #+END_HTML
 
@@ -39,6 +40,11 @@ introductions.)
 #+BEGIN_CENTER
 Web development is /too big/.
 #+END_CENTER
+
+*** Notes                                                             :notes:
+
+The problem with web development is that is it too big. What do I mean
+by that? Let's go to the next slide and see.
 
 ** Many languages                                                     :slide:
 
