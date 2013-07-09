@@ -579,8 +579,6 @@ you can return are files, InputStreams, references and functions.
 Let's take a few minutes and look at the sample application we have so
 far, so you can see how all this fits together.
 
-tag: ex-compojure
-
 ** Templating                                                         :slide:
 
 - HTML
@@ -665,8 +663,6 @@ last example.
 
 Let's look at the views we've created so far so we can see how this
 all fits together.
-
-tag: ex-hiccup
 
 ** JSON generation with Cheshire                                      :slide:
 
@@ -940,8 +936,6 @@ we are not going to cover that here.
 
 Let's look at the application now to see how all this fits together.
 
-tag: ex-noir
-
 ** REST APIs with Liberator                                           :slide:
 
 - Liberator provides resources
@@ -1163,8 +1157,6 @@ past.
 
 Let's see how we have used Liberator to turn parts of our application
 into reusable resources.
-
-Tag: ex-liberator
 
 ** ClojureScript                                                      :slide:
 

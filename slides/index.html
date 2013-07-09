@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="title" content="Functional Web Development with Clojure"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2013-07-08T21:49-0500"/>
+<meta name="generated" content="2013-07-09T10:31-0500"/>
 <meta name="author" content="Clinton Dreisbach"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -343,7 +343,25 @@
 <li><a href="#sec-6-6-1">6.6.1 Notes</a></li>
 </ul>
 </li>
-<li><a href="#sec-6-7">6.7 Hoplon</a></li>
+<li><a href="#sec-6-7">6.7 Hoplon</a>
+<ul>
+<li><a href="#sec-6-7-1">6.7.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-6-8">6.8 Hoplon example (HTML)</a>
+<ul>
+<li><a href="#sec-6-8-1">6.8.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-6-9">6.9 Hoplon example (CLJS)</a>
+<ul>
+<li><a href="#sec-6-9-1">6.9.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-6-10">6.10 Presioke example</a>
+<ul>
+<li><a href="#sec-6-10-1">6.10.1 Notes</a></li>
+</ul></li>
 </ul>
 </li>
 <li><a href="#sec-7">7 Conclusion</a></li>
@@ -361,6 +379,7 @@
 
 <p class="presenters">
 Clinton Dreisbach<br />
+@cndreisbach<br />
 <a href="http://clojurewebdev.com">clojurewebdev.com</a>
 </p>
 
@@ -1361,9 +1380,6 @@ you can return are files, InputStreams, references and functions.
 Let's take a few minutes and look at the sample application we have so
 far, so you can see how all this fits together.
 </p>
-<p>
-tag: ex-compojure
-</p>
 </div>
 
 </div>
@@ -1525,9 +1541,6 @@ last example.
 <p>
 Let's look at the views we've created so far so we can see how this
 all fits together.
-</p>
-<p>
-tag: ex-hiccup
 </p>
 </div>
 
@@ -2006,9 +2019,6 @@ we are not going to cover that here.
 <p>
 Let's look at the application now to see how all this fits together.
 </p>
-<p>
-tag: ex-noir
-</p>
 </div>
 
 </div>
@@ -2382,9 +2392,6 @@ past.
 <p>
 Let's see how we have used Liberator to turn parts of our application
 into reusable resources.
-</p>
-<p>
-Tag: ex-liberator
 </p>
 </div>
 
@@ -2911,7 +2918,7 @@ Let's take a look at what this template gives us.
 </div>
 
 <div id="outline-container-6" class="outline-2">
-<h2 id="sec-6"><span class="section-number-2">6</span> <span class="todo TODO">TODO</span> Future Approaches</h2>
+<h2 id="sec-6"><span class="section-number-2">6</span> Future Approaches</h2>
 <div class="outline-text-2" id="text-6">
 
 
@@ -3170,9 +3177,166 @@ either will be released soon or is released already.
 </div>
 
 <div id="outline-container-6-7" class="outline-3">
-<h3 id="sec-6-7"><span class="section-number-3">6.7</span> <span class="todo TODO">TODO</span> Hoplon</h3>
+<h3 id="sec-6-7"><span class="section-number-3">6.7</span> Hoplon &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
 <div class="outline-text-3" id="text-6-7">
 
+
+<ul>
+<li>client-side only
+</li>
+<li>HTML + ClojureScript -&gt; ClojureScript compiler
+</li>
+</ul>
+
+
+
+</div>
+
+<div id="outline-container-6-7-1" class="outline-4">
+<h4 id="sec-6-7-1"><span class="section-number-4">6.7.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-6-7-1">
+
+
+<p>
+Hoplon is a framework for building JavaScript web app front-ends using
+HTML and ClojureScript. It is completely agnostic as to how your
+back-end is built &ndash; if you have one &ndash; and how it is served. It
+produces HTML and JavaScript files that you can serve however you
+like.
+</p>
+<p>
+The key point of Hoplon is that HTML is a s-expression language and
+can be treated as ClojureScript. You can mix HTML and ClojureScript in
+a Hoplon file and the HTML will be evaluated as ClojureScript,
+allowing you to create new widgets in ClojureScript that you can use
+in HTML.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-6-8" class="outline-3">
+<h3 id="sec-6-8"><span class="section-number-3">6.8</span> Hoplon example (HTML) &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-6-8">
+
+
+
+
+
+<pre class="src src-html">&lt;<span style="color: #268BD2; font-weight: bold;">html</span>&gt;
+  &lt;<span style="color: #268BD2; font-weight: bold;">body</span>&gt;
+    &lt;<span style="color: #268BD2; font-weight: bold;">script</span> <span style="color: #6c71c4;">type</span>=<span style="color: #00877C;">"text/hoplon"</span>&gt;
+      (ns example.index)
+
+      (defn myfn [x y]
+        (div {:class <span style="color: #00877C;">"foo"</span>}
+          (ul (li x)
+              (li y))))
+    &lt;/<span style="color: #268BD2; font-weight: bold;">script</span>&gt;
+
+    &lt;<span style="color: #268BD2; font-weight: bold;">h1</span>&gt;<span style="font-weight: bold; text-decoration: underline;">Hello, Hoplon</span>&lt;/<span style="color: #268BD2; font-weight: bold;">h1</span>&gt;
+
+    <span style="color: #93a1a1;">&lt;!-- </span><span style="color: #93a1a1;">an HTML syntax call to the myfn function </span><span style="color: #93a1a1;">--&gt;</span>
+    &lt;<span style="color: #268BD2; font-weight: bold;">myfn</span>&gt;
+      &lt;<span style="color: #268BD2; font-weight: bold;">div</span>&gt;first thing&lt;/<span style="color: #268BD2; font-weight: bold;">div</span>&gt;
+      &lt;<span style="color: #268BD2; font-weight: bold;">div</span>&gt;second thing&lt;/<span style="color: #268BD2; font-weight: bold;">div</span>&gt;
+    &lt;/<span style="color: #268BD2; font-weight: bold;">myfn</span>&gt;
+  &lt;/<span style="color: #268BD2; font-weight: bold;">body</span>&gt;
+&lt;/<span style="color: #268BD2; font-weight: bold;">html</span>&gt;
+</pre>
+
+
+
+</div>
+
+<div id="outline-container-6-8-1" class="outline-4">
+<h4 id="sec-6-8-1"><span class="section-number-4">6.8.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-6-8-1">
+
+
+<p>
+The first thing you might notice in this example is the script tag. We
+have ClojureScript inside this tag, which is interesting. The second
+thing you'll probably notice is the <code>myfn</code> tag in the HTML. <code>myfn</code> is
+defined as a function in ClojureScript and is called from our HTML.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-6-9" class="outline-3">
+<h3 id="sec-6-9"><span class="section-number-3">6.9</span> Hoplon example (CLJS) &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-6-9">
+
+
+
+
+
+<pre class="src src-clojure">(<span style="color: #859900; font-weight: bold;">ns</span> example.index)
+
+(<span style="color: #859900; font-weight: bold;">defn</span> <span style="color: #268BD2; font-weight: bold;">myfn</span> [x y]
+  (div {<span style="color: #d33682; font-weight: bold;">:class</span> <span style="color: #00877C;">"foo"</span>}
+       (ul (li x)
+           (li y))))
+
+(html
+ (body
+  (h1 <span style="color: #00877C;">"Hello, Hoplon"</span>)
+  (myfn <span style="color: #00877C;">"first thing"</span> <span style="color: #00877C;">"second thing"</span>)))
+</pre>
+
+
+
+</div>
+
+<div id="outline-container-6-9-1" class="outline-4">
+<h4 id="sec-6-9-1"><span class="section-number-4">6.9.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-6-9-1">
+
+
+<p>
+This produces the exact same results as our previous
+example. Obviously, Hoplon is transforming our ClojureScript to add in
+functions for creating HTML structures.
+</p>
+<p>
+The ClojureScript version of this is much more concise, but being able
+to write your HTML as HTML can be a benefit.
+</p>
+<p>
+Hoplon does not give you anything you couldn't do yourself with
+ClojureScript, but the tooling is nice for being able to generate all
+the HTML and JavaScript you need.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-6-10" class="outline-3">
+<h3 id="sec-6-10"><span class="section-number-3">6.10</span> Presioke example &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-6-10">
+
+
+<p>
+Let's look at a larger example of Hoplon at work.
+</p>
+
+</div>
+
+<div id="outline-container-6-10-1" class="outline-4">
+<h4 id="sec-6-10-1"><span class="section-number-4">6.10.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-6-10-1">
+
+
+<p>
+Show Presioke code. Specifically, show <code>reactive-attributes</code> at work
+and how that allows us to easily hook up our code to react to events
+without all the normal JS plumbing.
+</p>
+</div>
 </div>
 </div>
 
@@ -3215,7 +3379,7 @@ clinton@dreisbach.us
 </div>
 
 <div id="postamble">
-<p class="date">Date: 2013-07-08T21:49-0500</p>
+<p class="date">Date: 2013-07-09T10:31-0500</p>
 <p class="author">Author: Clinton Dreisbach</p>
 <p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.3f with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 24</p>
 <a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
