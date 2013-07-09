@@ -10,6 +10,7 @@
 #+BEGIN_HTML
 <p class="presenters">
 Clinton Dreisbach<br />
+@cndreisbach<br />
 <a href="http://clojurewebdev.com">clojurewebdev.com</a>
 </p>
 #+END_HTML
@@ -1441,7 +1442,7 @@ Let's take a look at what this template gives us.
                ["src/{{sanitized}}/foo.clj"
                 (render "foo.clj" data)])))
 #+END_SRC
-* TODO Future Approaches
+* Future Approaches
 ** Pedestal                                                           :slide:
 
 - Developed by Relevance
@@ -1589,7 +1590,96 @@ and I do not understand all of it. Luckily, there's a new tutorial on
 it written by one of the main developers, Brenton Ashworth, that
 either will be released soon or is released already.
 
-** TODO Hoplon
+** Hoplon                                                             :slide:
+
+- client-side only
+- HTML + ClojureScript -> ClojureScript compiler
+
+*** Notes                                                             :notes:
+
+Hoplon is a framework for building JavaScript web app front-ends using
+HTML and ClojureScript. It is completely agnostic as to how your
+back-end is built -- if you have one -- and how it is served. It
+produces HTML and JavaScript files that you can serve however you
+like.
+
+The key point of Hoplon is that HTML is a s-expression language and
+can be treated as ClojureScript. You can mix HTML and ClojureScript in
+a Hoplon file and the HTML will be evaluated as ClojureScript,
+allowing you to create new widgets in ClojureScript that you can use
+in HTML.
+
+** Hoplon example (HTML)                                              :slide:
+
+#+BEGIN_SRC html
+  <html>
+    <body>
+      <script type="text/hoplon">
+        (ns example.index)
+  
+        (defn myfn [x y]
+          (div {:class "foo"}
+            (ul (li x)
+                (li y))))
+      </script>
+  
+      <h1>Hello, Hoplon</h1>
+  
+      <!-- an HTML syntax call to the myfn function -->
+      <myfn>
+        <div>first thing</div>
+        <div>second thing</div>
+      </myfn>
+    </body>
+  </html>
+#+END_SRC
+
+*** Notes                                                             :notes:
+
+The first thing you might notice in this example is the script tag. We
+have ClojureScript inside this tag, which is interesting. The second
+thing you'll probably notice is the =myfn= tag in the HTML. =myfn= is
+defined as a function in ClojureScript and is called from our HTML.
+
+** Hoplon example (CLJS)                                              :slide:
+
+#+BEGIN_SRC clojure
+  (ns example.index)
+  
+  (defn myfn [x y]
+    (div {:class "foo"}
+         (ul (li x)
+             (li y))))
+  
+  (html
+   (body
+    (h1 "Hello, Hoplon")
+    (myfn "first thing" "second thing")))
+#+END_SRC
+
+*** Notes                                                             :notes:
+
+This produces the exact same results as our previous
+example. Obviously, Hoplon is transforming our ClojureScript to add in
+functions for creating HTML structures.
+
+The ClojureScript version of this is much more concise, but being able
+to write your HTML as HTML can be a benefit.
+
+Hoplon does not give you anything you couldn't do yourself with
+ClojureScript, but the tooling is nice for being able to generate all
+the HTML and JavaScript you need.
+
+** Presioke example                                                   :slide:
+
+Let's look at a larger example of Hoplon at work.
+
+*** Notes                                                             :notes:
+
+Show Presioke code. Specifically, show =reactive-attributes= at work
+and how that allows us to easily hook up our code to react to events
+without all the normal JS plumbing.
+
 * Conclusion                                                          :slide:
 
 That's it! Go make a web!
