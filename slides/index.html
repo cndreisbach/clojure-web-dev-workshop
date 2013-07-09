@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="title" content="Functional Web Development with Clojure"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2013-07-07T13:15-0400"/>
+<meta name="generated" content="2013-07-08T21:49-0500"/>
 <meta name="author" content="Clinton Dreisbach"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -268,7 +268,27 @@
 </ul>
 </li>
 <li><a href="#sec-4-42">4.42 App review</a></li>
-<li><a href="#sec-4-43">4.43 Summary</a></li>
+<li><a href="#sec-4-43">4.43 FRP with Javelin</a>
+<ul>
+<li><a href="#sec-4-43-1">4.43.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-44">4.44 Javelin in action</a>
+<ul>
+<li><a href="#sec-4-44-1">4.44.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-45">4.45 Javelin in our program</a>
+<ul>
+<li><a href="#sec-4-45-1">4.45.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-46">4.46 App review</a>
+<ul>
+<li><a href="#sec-4-46-1">4.46.1 Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-47">4.47 Summary</a></li>
 </ul>
 </li>
 <li><a href="#sec-5">5 Pulling Things Together</a>
@@ -2523,16 +2543,190 @@ JavaScript interop. In the example I have, I'll show how I handled that.
 Let's look at some simple ClojureScript interaction and see how to
 reuse Hiccup templates between the front-end and back-end.
 </p>
-<p>
-Tag: ex-cljs
-</p>
 </div>
 
 </div>
 
 <div id="outline-container-4-43" class="outline-3">
-<h3 id="sec-4-43"><span class="section-number-3">4.43</span> Summary &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<h3 id="sec-4-43"><span class="section-number-3">4.43</span> FRP with Javelin &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
 <div class="outline-text-3" id="text-4-43">
+
+
+<ul>
+<li>FRP = Functional Reactive Programming
+</li>
+<li>Imagine a spreadsheet
+</li>
+</ul>
+
+
+
+</div>
+
+<div id="outline-container-4-43-1" class="outline-4">
+<h4 id="sec-4-43-1"><span class="section-number-4">4.43.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-4-43-1">
+
+
+<p>
+Javelin is a library for functional reactive programming in
+ClojureScript. What is functional reactive programming? It has a
+formal definition involving signals and events which I am not going to
+get into because it confuses me. The easiest way to think about FRP is
+to imagine a spreadsheet. You have some cells in a spreadsheet that
+you put a value into and you have other cells that have formulas in
+them. Whenever you change the value in one of those value cells, all the
+formula cells are immediately updated. 
+</p>
+<p>
+Now take that and apply that to programming, particularly your UI. You
+have data stored in value cells and you have formula cells that return
+calculated values or perform side effects. Whenever you update one of
+those value cells, all the formula cells are recomputed.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4-44" class="outline-3">
+<h3 id="sec-4-44"><span class="section-number-3">4.44</span> Javelin in action &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-44">
+
+
+
+
+
+<pre class="src src-clojure">(<span style="color: #859900; font-weight: bold;">ns</span> user
+  (<span style="color: #d33682; font-weight: bold;">:require</span> tailrecursion.javelin)
+  (<span style="color: #d33682; font-weight: bold;">:require-macros</span> [tailrecursion.javelin.macros <span style="color: #d33682; font-weight: bold;">:refer</span> [cell]]))
+
+(<span style="color: #859900; font-weight: bold;">let</span> [a (cell 0)            <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">value cell of 0.</span>
+      b (cell (<span style="color: #6c71c4; font-style: italic;">inc</span> a))      <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">formula cell of a+1.</span>
+      c (cell (<span style="color: #6c71c4; font-style: italic;">+</span> 42 a b))]  <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">formula cell of a+b+42.</span>
+  (cell (<span style="color: #268BD2; font-style: italic;">.log</span> js/console c))
+  <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">c's initial value, 43, is printed.</span>
+  (<span style="color: #6c71c4; font-style: italic;">swap!</span> a inc)
+  <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">a was incremented, and its new value propagated (consistently)</span>
+  <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">through b and c.  c's new value is printed to the console.</span>
+  <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">What is c's new value?</span>
+  )
+</pre>
+
+
+
+</div>
+
+<div id="outline-container-4-44-1" class="outline-4">
+<h4 id="sec-4-44-1"><span class="section-number-4">4.44.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-4-44-1">
+
+
+<p>
+Here we have a simple use of Javelin. We use the cell macro to create
+a value cell with 0 in it and two formula cells calculating values
+based on <code>a</code>. Then, we have an unnamed cell that logs the value of <code>c</code>
+to the console.
+</p>
+<p>
+That unnamed cell will immediately run and output <code>c</code>'s value to the
+console. When we then run <code>swap!</code> to change the value of <code>a</code>, <code>b</code> and
+<code>c</code> are recalculated and the new value of <code>c</code> will be output once
+again. What is the value of <code>c</code> after we run <code>swap</code>? Why?
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4-45" class="outline-3">
+<h3 id="sec-4-45"><span class="section-number-3">4.45</span> Javelin in our program &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-45">
+
+
+
+
+
+<pre class="src src-clojure">(<span style="color: #859900; font-weight: bold;">ns</span> we-owe.client
+  (<span style="color: #d33682; font-weight: bold;">:require</span> [we-owe.views.templates <span style="color: #d33682; font-weight: bold;">:as</span> templates]
+            [we-owe.dom <span style="color: #d33682; font-weight: bold;">:refer</span> [replace!]]
+            [ajax.core <span style="color: #d33682; font-weight: bold;">:refer</span> [<span style="color: #268BD2; font-style: italic;">GET</span>]]            
+            tailrecursion.javelin)
+  (<span style="color: #d33682; font-weight: bold;">:require-macros</span> [tailrecursion.javelin.macros <span style="color: #d33682; font-weight: bold;">:refer</span> [cell]]))
+
+(<span style="color: #859900; font-weight: bold;">def</span> <span style="color: #268BD2; font-weight: bold;">debts</span> (cell '[]))
+
+(cell (replace! <span style="color: #d33682; font-weight: bold;">:#debts-list</span> (templates/debts-list debts)))
+
+(<span style="color: #268BD2; font-style: italic;">GET</span> <span style="color: #00877C;">"/debts.json"</span>
+     {<span style="color: #d33682; font-weight: bold;">:format</span> <span style="color: #d33682; font-weight: bold;">:json</span>
+      <span style="color: #d33682; font-weight: bold;">:keywordize-keys</span> true
+      <span style="color: #d33682; font-weight: bold;">:handler</span> (<span style="color: #859900; font-weight: bold;">fn</span> [data] (<span style="color: #6c71c4; font-style: italic;">reset!</span> debts (<span style="color: #d33682; font-weight: bold;">:debts</span> data)))})
+</pre>
+
+
+
+</div>
+
+<div id="outline-container-4-45-1" class="outline-4">
+<h4 id="sec-4-45-1"><span class="section-number-4">4.45.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-4-45-1">
+
+
+<p>
+Here we have an example of Javelin in our program. If you remember, we
+previously replaced parts of our HTML in our success handler when we
+made an Ajax request to get the debts. This time, we just reset the
+value in the <code>debts</code> cell. Since we have another cell that updates the
+HTML, it will be updated when the value of <code>debts</code> is updated.
+</p>
+<p>
+This isn't that much more useful than what we had, but it can become
+very useful when your data can be updated from different places in
+your code.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4-46" class="outline-3">
+<h3 id="sec-4-46"><span class="section-number-3">4.46</span> App review &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-46">
+
+
+<p>
+Let's look at one way we used Javelin in our code to do something that
+would have been hard previously.
+</p>
+
+</div>
+
+<div id="outline-container-4-46-1" class="outline-4">
+<h4 id="sec-4-46-1"><span class="section-number-4">4.46.1</span> Notes &nbsp;&nbsp;&nbsp;<span class="tag"><span class="notes">notes</span></span></h4>
+<div class="outline-text-4" id="text-4-46-1">
+
+
+<p>
+Show how we have Javelin in our code updating as I've shown previously. Then:
+</p>
+<p>
+Let's say we wanted to keep a record of all transactions made from
+this page. We have that info on the server, but we're not sending it
+with the JSON response. Let's use Javelin to update a vector of new
+debts every time we submit the form.
+</p>
+<p>
+Then show how that works.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4-47" class="outline-3">
+<h3 id="sec-4-47"><span class="section-number-3">4.47</span> Summary &nbsp;&nbsp;&nbsp;<span class="tag"><span class="slide">slide</span></span></h3>
+<div class="outline-text-3" id="text-4-47">
 
 
 <ul>
@@ -3021,7 +3215,7 @@ clinton@dreisbach.us
 </div>
 
 <div id="postamble">
-<p class="date">Date: 2013-07-07T13:15-0400</p>
+<p class="date">Date: 2013-07-08T21:49-0500</p>
 <p class="author">Author: Clinton Dreisbach</p>
 <p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.3f with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 24</p>
 <a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>

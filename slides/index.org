@@ -1251,7 +1251,105 @@ JavaScript interop. In the example I have, I'll show how I handled that.
 Let's look at some simple ClojureScript interaction and see how to
 reuse Hiccup templates between the front-end and back-end.
 
-Tag: ex-cljs
+** FRP with Javelin                                                   :slide:
+
+- FRP = Functional Reactive Programming
+- Imagine a spreadsheet
+
+*** Notes                                                             :notes:
+
+Javelin is a library for functional reactive programming in
+ClojureScript. What is functional reactive programming? It has a
+formal definition involving signals and events which I am not going to
+get into because it confuses me. The easiest way to think about FRP is
+to imagine a spreadsheet. You have some cells in a spreadsheet that
+you put a value into and you have other cells that have formulas in
+them. Whenever you change the value in one of those value cells, all the
+formula cells are immediately updated. 
+
+Now take that and apply that to programming, particularly your UI. You
+have data stored in value cells and you have formula cells that return
+calculated values or perform side effects. Whenever you update one of
+those value cells, all the formula cells are recomputed.
+
+** Javelin in action                                                  :slide:
+
+#+BEGIN_SRC clojure
+  (ns user
+    (:require tailrecursion.javelin)
+    (:require-macros [tailrecursion.javelin.macros :refer [cell]]))
+  
+  (let [a (cell 0)            ;; value cell of 0.
+        b (cell (inc a))      ;; formula cell of a+1.
+        c (cell (+ 42 a b))]  ;; formula cell of a+b+42.
+    (cell (.log js/console c))
+    ;; c's initial value, 43, is printed.
+    (swap! a inc)
+    ;; a was incremented, and its new value propagated (consistently)
+    ;; through b and c.  c's new value is printed to the console.
+    ;; What is c's new value?
+    )
+#+END_SRC
+
+*** Notes                                                             :notes:
+
+Here we have a simple use of Javelin. We use the cell macro to create
+a value cell with 0 in it and two formula cells calculating values
+based on =a=. Then, we have an unnamed cell that logs the value of =c=
+to the console.
+
+That unnamed cell will immediately run and output =c='s value to the
+console. When we then run =swap!= to change the value of =a=, =b= and
+=c= are recalculated and the new value of =c= will be output once
+again. What is the value of =c= after we run =swap=? Why?
+
+** Javelin in our program                                             :slide:
+
+#+BEGIN_SRC clojure
+  (ns we-owe.client
+    (:require [we-owe.views.templates :as templates]
+              [we-owe.dom :refer [replace!]]
+              [ajax.core :refer [GET]]            
+              tailrecursion.javelin)
+    (:require-macros [tailrecursion.javelin.macros :refer [cell]]))
+  
+  (def debts (cell '[]))
+  
+  (cell (replace! :#debts-list (templates/debts-list debts)))
+  
+  (GET "/debts.json"
+       {:format :json
+        :keywordize-keys true
+        :handler (fn [data] (reset! debts (:debts data)))})
+#+END_SRC
+
+*** Notes                                                             :notes:
+
+Here we have an example of Javelin in our program. If you remember, we
+previously replaced parts of our HTML in our success handler when we
+made an Ajax request to get the debts. This time, we just reset the
+value in the =debts= cell. Since we have another cell that updates the
+HTML, it will be updated when the value of =debts= is updated.
+
+This isn't that much more useful than what we had, but it can become
+very useful when your data can be updated from different places in
+your code.
+
+** App review                                                         :slide:
+
+Let's look at one way we used Javelin in our code to do something that
+would have been hard previously.
+
+*** Notes                                                             :notes:
+
+Show how we have Javelin in our code updating as I've shown previously. Then:
+
+Let's say we wanted to keep a record of all transactions made from
+this page. We have that info on the server, but we're not sending it
+with the JSON response. Let's use Javelin to update a vector of new
+debts every time we submit the form.
+
+Then show how that works.
 
 ** Summary                                                            :slide:
 
